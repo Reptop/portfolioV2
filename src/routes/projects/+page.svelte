@@ -1,11 +1,17 @@
 <script>
   export let data;
+  import TerminalAnimation from "$lib/components/animation.js";
 </script>
 
 <main>
-  <h1>projects <span class="count">({data.projects.length})</span></h1>
+  <h1 in:TerminalAnimation={{ duration: 270 }}>
+    projects <span class="count">({data.projects.length})</span>
+  </h1>
 
-  <div class="projects-grid">
+  <div
+    class="projects-grid"
+    in:TerminalAnimation={{ delay: 120, duration: 280 }}
+  >
     {#each data.projects as project}
       <a class="project-card" href={`/projects/${project.slug}`}>
         <div class="media">
@@ -38,8 +44,12 @@
   main {
     width: 100%;
     max-width: 64rem;
-    margin: 1.5rem auto 4rem;
+    margin: 1.5rem auto 4.5rem;
     padding: 0 1.5rem;
+  }
+
+  h1 {
+    margin: 0.35rem 0 0.75rem;
   }
 
   .count {
@@ -50,7 +60,7 @@
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.4rem;
+    gap: 0.9rem;
   }
 
   .project-card {
@@ -111,7 +121,7 @@
     gap: 0.7rem;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 700px) {
     .projects-grid {
       grid-template-columns: 1fr;
     }
