@@ -8,10 +8,11 @@
 
   <div class="content" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
     <p class="lead">
-      my name is raed. when online, i go by the handle "reptop". i'm student at
-      oregon state university, where i study computer science and math. i'm
-      interested in machine learning and differential equations research. i also
-      have two cats named Gohan and Gojo; they are my sons, and i love them.
+      Hey there, my name is Raed Kabir. When I'm online, I go by the handle
+      "reptop". I'm a student at Oregon State University where I study computer
+      science & math. I'm very interested in machine learning and differential
+      equations research because I'm a big math nerd. One fun fact about is that
+      I have two cats named Gohan and Gojo.
     </p>
 
     <h2>links</h2>
