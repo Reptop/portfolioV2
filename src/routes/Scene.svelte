@@ -4,11 +4,11 @@
   import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
   import { useLoader } from "@threlte/core";
   import { useGltfAnimations } from "@threlte/extras";
+  import { base } from "$app/paths";
 
   interactivity();
 
-  const url = new URL("$lib/assets/mega_delphox_za/scene.gltf", import.meta.url)
-    .href;
+  const url = `${base}/mega_delphox_za/scene.gltf`;
 
   const gltf = useLoader(GLTFLoader).load(url);
 
