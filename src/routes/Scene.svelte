@@ -8,7 +8,7 @@
 
   interactivity();
 
-  const url = `${base}/mega_delphox_za/scene.gltf`;
+  const url = `${base}/mega_delphox_za/scene.optimized.glb`;
 
   const gltf = useLoader(GLTFLoader).load(url);
 
