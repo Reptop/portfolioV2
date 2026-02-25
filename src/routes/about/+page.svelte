@@ -9,13 +9,14 @@
   <div class="content" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
     <p class="lead">
       My name is Raed Kabir. I'm a student at Oregon State University where I
-      study computer science & math with a focus in AI. I'm very interested in
-      machine learning, specifically computer vision. I plan on focusing more on
-      heavy AI related projects in the future and hope to eventually work in the
-      field. I also have a passion for programming and love building fun
-      projects on the side. I have a lot of interests outside of CS as well,
-      such as competing in Smash Ultimate, hanging out with friends, and taking
-      care of my two cats, Gohan and Gojo.
+      study computer science & math with a focus in AI. I use the handle
+      "reptop" when online. I'm very interested in machine learning,
+      specifically computer vision. I plan on focusing more on heavy AI related
+      projects in the future and hope to eventually work in the field. I also
+      have a passion for programming and love building fun projects on the side.
+      I have a lot of interests outside of CS as well, such as competing in
+      Smash Ultimate, hanging out with friends, and taking care of my two cats,
+      Gohan and Gojo.
     </p>
 
     <h2>links</h2>

@@ -18,8 +18,8 @@
       </div>
 
       <p>
-        Hello, my name is Raed Kabir, and I love machine learning, math, and
-        programming.
+        Hello there, my name is Raed Kabir and I love machine learning, math,
+        and programming.
       </p>
 
       <nav>
