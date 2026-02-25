@@ -69,7 +69,7 @@
     <div class="panel">
       <div class="panel-links">
         <a
-          href="https://github.com/Reptop"
+          href="https://github.com/Reptop/portfolioV2"
           class="external textlink"
           target="_blank"
           rel="noreferrer"

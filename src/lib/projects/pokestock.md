@@ -1,9 +1,9 @@
 ---
-title: "Pokestock"
+title: "PokeStock"
 summary: "A website that allows users to track pokemon vending machine stock levels in real time. Stock levels are reported by users and displayed on a map, allowing others to find nearby machines with the card set they want."
 platform: "Desktop / Mobile"
 source: "https://github.com/Reptop/PokeStock"
-stack: "Qt, OpenCV, C++, OptiTrack SDK"
+stack: "Svelte, SvelteKit, Typescript"
 date: "2025-05-12"
 status: "Finished in 2025"
 cover: "/projects/pokestock.png"
