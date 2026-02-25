@@ -9,6 +9,8 @@
 </script>
 
 <article class="post-shell">
+  <a class="back" href="/blog"><span class="arrow">←</span>Back to blog</a>
+
   <header class="hero">
     <h1>{data.title || data.slug}</h1>
 
@@ -136,6 +138,50 @@
   .prose :global(p),
   .prose :global(li) {
     color: var(--txt);
+  }
+
+  .prose :global(p) {
+    margin: 1rem 0 0;
+    max-width: 72ch;
+    line-height: 1.82;
+    text-wrap: pretty;
+  }
+
+  .prose :global(p + p) {
+    margin-top: 0.9rem;
+  }
+
+  .prose :global(h3) {
+    margin: 2rem 0 0.8rem;
+    font-size: 1.75rem;
+    color: var(--green);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+
+  .prose :global(h3:not(:first-child)) {
+    padding-top: 0.9rem;
+    border-top: 1px solid color-mix(in srgb, var(--bg-3), transparent 35%);
+  }
+
+  .prose :global(h3 + p) {
+    margin-top: 0.35rem;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0.8rem 0 0;
+    max-width: 72ch;
+    line-height: 1.75;
+    color: var(--txt);
+  }
+
+  .prose :global(li) {
+    margin: 0.4rem 0;
+  }
+
+  .prose :global(strong) {
+    color: var(--txt-0);
   }
 
   .prose :global(a) {

@@ -28,11 +28,14 @@
 
         <div class="card-body">
           <h2>{project.title || project.slug}</h2>
+          {#if project.hasVideo}
+            <p class="demo-badge">Demo available</p>
+          {/if}
           <p class="meta">
             {#if project.date}
               <span>{project.date}</span>
             {/if}
-            <span>Open project →</span>
+            <span>View details →</span>
           </p>
         </div>
       </a>
@@ -82,9 +85,11 @@
   }
 
   .media {
+    position: relative;
     margin: 0;
     border-bottom: 2px solid var(--bg-3);
     background: var(--bg);
+    overflow: hidden;
   }
 
   img {
@@ -92,6 +97,15 @@
     height: 15rem;
     object-fit: cover;
     display: block;
+    transition:
+      transform 180ms ease,
+      filter 180ms ease;
+  }
+
+  .project-card:hover img,
+  .project-card:focus-visible img {
+    transform: scale(1.02);
+    filter: brightness(1.03);
   }
 
   .media-fallback {
@@ -110,6 +124,18 @@
     margin: 0;
     font-size: 1.3rem;
     color: var(--txt);
+  }
+
+  .demo-badge {
+    margin: 0.45rem 0 0;
+    width: fit-content;
+    padding: 0.16rem 0.48rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    border: 1px solid color-mix(in srgb, var(--yellow), transparent 55%);
+    background: color-mix(in srgb, var(--yellow), transparent 88%);
   }
 
   .meta {

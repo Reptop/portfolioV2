@@ -1,6 +1,5 @@
 <script>
   export let data;
-
   const projectModules = import.meta.glob("$lib/projects/*.md");
   const projectPath = `/src/lib/projects/${data.slug}.md`;
   /** @type {Promise<any>} */
@@ -227,8 +226,53 @@
   .content {
     border: 1px solid var(--bg-3);
     background: var(--bg-2);
-    padding: 1.15rem 1.15rem 1.6rem;
-    margin-bottom: 1rem;
+    padding: 1.2rem 1.25rem 1.7rem;
+    margin-bottom: 2rem;
+  }
+
+  .content :global(p) {
+    margin: 1rem 0 0;
+    max-width: 72ch;
+    color: var(--txt);
+    line-height: 1.82;
+    text-wrap: pretty;
+  }
+
+  .content :global(p + p) {
+    margin-top: 0.9rem;
+  }
+
+  .content :global(h3) {
+    margin: 2rem 0 0.8rem;
+    font-size: 1.75rem;
+    color: var(--green);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+
+  .content :global(h3:not(:first-child)) {
+    padding-top: 0.9rem;
+    border-top: 1px solid color-mix(in srgb, var(--bg-3), transparent 35%);
+  }
+
+  .content :global(h3 + p) {
+    margin-top: 0.35rem;
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    margin: 0.8rem 0 0;
+    max-width: 72ch;
+    line-height: 1.75;
+    color: var(--txt);
+  }
+
+  .content :global(li) {
+    margin: 0.4rem 0;
+  }
+
+  .content :global(strong) {
+    color: var(--txt-0);
   }
 
   .content :global(iframe),

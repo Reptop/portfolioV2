@@ -15,10 +15,10 @@ export async function load() {
         title: metadata.title || null,
         date: metadata.date || null,
         cover: metadata.cover || null,
+        hasVideo: typeof metadata.video === 'string' && metadata.video.startsWith('http'),
       };
     })
     .sort((a, b) => (a.date || '') < (b.date || '') ? 1 : -1);
 
   return { projects };
 }
-
