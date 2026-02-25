@@ -9,7 +9,7 @@
   </h1>
 
   <p class="sub" in:TerminalAnimation={{ delay: 70, duration: 220 }}>
-    my current setup at a glance
+    Tech I depend on for my livelyhood characterized as Chiikawa characters.
   </p>
 
   <section
