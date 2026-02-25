@@ -18,7 +18,8 @@
     <h1 in:TerminalAnimation={{ duration: 270 }}>blog</h1>
 
     <p class="sub">
-      notes on builds, experiments, and process
+      For when I want to talk about something really cool or something really
+      stupid I did, no inbetween.
       <span>{data.posts.length} post{data.posts.length === 1 ? "" : "s"}</span>
     </p>
   </header>

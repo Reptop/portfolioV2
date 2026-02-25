@@ -52,7 +52,7 @@
 
 <main>
   <h1 in:TerminalAnimation={{ duration: 240 }}>contact info</h1>
-  <p>if you want to talk to me.</p>
+  <p>If you want to talk to me.</p>
 
   <div class="info" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
     <span class="icn"><Icon icon="simple-icons:gmail" /></span>
