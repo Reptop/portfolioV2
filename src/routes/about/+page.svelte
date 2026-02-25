@@ -12,7 +12,8 @@
       study computer science & math with a focus in AI. When, online, I go by
       the handle "reptop." My work history includes conducting linear algebra
       research, working as a teaching assistant, and tutoring kids in
-      programming.
+      programming. I am currently focusing on machine learning projects related
+      to deep learning, computer vision, and natural language processing.
     </p>
 
     <h2>links</h2>
