@@ -1,7 +1,8 @@
 ---
 title: "What I hope to accomplish in the future (hopefully)"
-subtitle: "Are we cooked?"
+subtitle: "I put a gif of Shisa here becasue I love her"
 date: "2026-02-26"
+cover: "/projects/mygoat.gif"
 ---
 
 ### Context 
