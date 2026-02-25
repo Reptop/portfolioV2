@@ -27,6 +27,8 @@ function remarkPreserveCodeMeta() {
   };
 }
 
+// Helper function to fix split HTML entities in the AST produced by rehype-pretty-code
+// This is necessary because rehype-pretty-code can split entities like &lt; into separate nodes (& and lt;), which breaks the rendering of the entities in the final HTML output.
 function rehypeFixSplitEntities() {
   return (tree) => {
     const walk = (node) => {
@@ -101,7 +103,7 @@ const mdsvexConfig = {
       rehypePrettyCode,
       {
         theme: 'github-dark',
-        langs: ['javascript', 'typescript', 'cpp', 'bash', 'json', 'plaintext', 'svelte', 'html', 'css'],
+        langs: ['javascript', 'typescript', 'cpp', 'bash', 'json', 'plaintext', 'svelte', 'html', 'css', 'yaml', 'c', 'java', 'rust', 'go', 'php', 'ruby', 'swift', 'kotlin'],
         keepBackground: false,
         defaultLang: {
           block: 'plaintext',
