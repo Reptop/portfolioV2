@@ -30,6 +30,8 @@ export async function load({ params }) {
   const gallery = Array.isArray(metadata.gallery)
     ? metadata.gallery.filter((item) => typeof item === 'string' && item.length > 0)
     : [];
+
+
   const info = [];
 
 

@@ -92,7 +92,7 @@
   main {
     width: 100%;
     max-width: 64rem;
-    margin: 1.5rem auto 5rem;
+    margin: 0 auto 10rem auto;
     padding: 0 1.5rem;
   }
 

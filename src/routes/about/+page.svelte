@@ -9,8 +9,8 @@
   <div class="content" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
     <p class="lead">
       My name is Raed Kabir. I'm a student at Oregon State University where I
-      study computer science & math with a focus in AI. When, online, I go by
-      the handle "reptop." My work history includes conducting linear algebra
+      study computer science & math with a focus in AI. When online, I go by the
+      handle "reptop." My work history includes conducting linear algebra
       research, working as a teaching assistant, and tutoring kids in
       programming. I am currently focusing on machine learning projects related
       to deep learning, computer vision, and natural language processing.
