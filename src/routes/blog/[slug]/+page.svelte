@@ -71,6 +71,13 @@
     text-wrap: balance;
   }
 
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--txt-2);
+  }
+
   .subtitle {
     margin: 0;
     font-size: 1.125rem;

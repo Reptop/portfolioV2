@@ -125,6 +125,14 @@
     color: var(--txt);
   }
 
+  .back {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--txt-2);
+  }
+
   .tags {
     list-style: none;
     margin: 1rem 0 0;

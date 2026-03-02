@@ -1,9 +1,6 @@
 import type { TransitionConfig } from 'svelte/transition';
 
-export default function TerminalAnimation(
-  node: Element,
-  opts?: { delay?: number; duration?: number },
-): TransitionConfig {
+export default function TerminalAnimation(node: Element, opts?: { delay?: number; duration?: number },): TransitionConfig {
   const delay = opts?.delay ?? 0;
   const duration = opts?.duration ?? 260;
 
