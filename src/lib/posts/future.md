@@ -1,6 +1,6 @@
 ---
 title: "What I hope to accomplish in the future (hopefully)"
-subtitle: "I put a gif of Shisa here becasue I love her"
+subtitle: "I put a gif of Shisa here because I love her"
 date: "2026-02-26"
 cover: "/projects/mygoat.gif"
 ---
