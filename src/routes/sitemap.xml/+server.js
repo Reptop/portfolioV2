@@ -1,5 +1,6 @@
 export const prerender = true;
 
+/** @type {import('@sveltejs/kit').RequestHandler} */
 export async function GET({ url }) {
   const origin = url.origin;
 

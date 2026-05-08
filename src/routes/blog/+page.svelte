@@ -30,9 +30,6 @@
         <a class="post-card" href={`/blog/${post.slug}`}>
           <p class="post-kicker">Post</p>
           <h2>{post.title || post.slug}</h2>
-          {#if post.subtitle}
-            <p class="subtitle">{post.subtitle}</p>
-          {/if}
           <div class="meta">
             <span class="meta-left">
               {#if post.date}
@@ -109,17 +106,6 @@
     filter: brightness(1.05);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
     border-color: var(--green);
-  }
-
-  .subtitle {
-    margin: 0.3rem 0 0;
-    font-size: 0.9rem;
-    color: var(--txt-2);
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .post-kicker {

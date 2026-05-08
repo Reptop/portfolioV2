@@ -1,3 +1,4 @@
+/** @param {string} markdown */
 function estimateReadingMinutes(markdown) {
   const content = markdown
     .replace(/^---[\s\S]*?---/, '')
@@ -26,7 +27,6 @@ export async function load() {
       return {
         slug,
         title: metadata.title || null,
-        subtitle: metadata.subtitle || null,
         date: metadata.date || null,
         readMins
       };

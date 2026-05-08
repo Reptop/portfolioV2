@@ -11,7 +11,6 @@ export async function load() {
       return {
         slug,
         title: metadata.title || null,
-        summary: metadata.summary || null,
         stack: metadata.stack || null,
         date: metadata.date || null,
         cover: metadata.cover || null,
