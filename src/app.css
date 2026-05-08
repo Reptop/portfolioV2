@@ -1,21 +1,11 @@
 :root {
-  /* Slightly lighter Gruvbox Dark (soft-ish) */
+  /* Gruvbox Dark palette */
   --gv-bg: #282828;
-
-  /* was #1d2021 */
-
   --gv-bg1: #504945;
-  /* was #3c3836 */
-
   --gv-panel: #32302f;
-  /* in-between */
-
   --gv-panel2: #3c3836;
-  /* hover / elevated */
 
-  /* Foreground & accents (same, very readable) */
   --gv-fg: #fbf1c7;
-  /* slightly brighter than #ebdbb2 */
   --gv-fg2: #ebdbb2;
   --gv-fg3: #d5c4a1;
 
@@ -27,7 +17,6 @@
   --gv-purple: #d3869b;
   --gv-red: #fb4934;
 
-  /* Map to existing vars */
   --bg: var(--gv-bg);
   --bg-2: var(--gv-panel);
   --bg-3: var(--gv-bg1);
@@ -37,7 +26,6 @@
   --txt-2: var(--gv-fg3);
   --txt-3: #7c6f64;
 
-  /* slightly lighter muted gray */
   --yellow: var(--gv-yellow);
   --orange: var(--gv-orange);
   --green: var(--gv-green);
@@ -265,11 +253,9 @@ figure {
   }
 }
 
-
 .sub {
   color: var(--txt-2);
 }
-
 
 /* mdsvex + rehype-pretty-code (Shiki) */
 [data-rehype-pretty-code-figure] {

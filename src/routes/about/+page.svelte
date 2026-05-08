@@ -271,7 +271,7 @@
     border-color: var(--pink);
   }
   a.external.icon.linkedin:hover {
-    border-color: var(--grey);
+    border-color: var(--blue);
   }
 
   /* INFO PANEL */
@@ -329,7 +329,7 @@
   }
 
   .v {
-    color: var(--red);
+    color: var(--txt-2);
   }
 
   /* Palette: less cramped, responsive */

@@ -6,7 +6,6 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   year: 'numeric'
 });
 
-/** @param {string} markdown */
 function estimateReadingMinutes(markdown) {
   const content = markdown
     .replace(/^---[\s\S]*?---/, '')

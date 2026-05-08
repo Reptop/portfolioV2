@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Icon from "@iconify/svelte";
   import { fade } from "svelte/transition";
   import TerminalAnimation from "$lib/components/animation";
@@ -92,8 +92,6 @@
       {/if}
     </button>
   </div>
-  <br />
-  <br />
 
   <h3>contact form</h3>
   <form onsubmit={handleSubmit}>
@@ -154,13 +152,13 @@
     }
 
     &:hover {
-      color: var(--txt-1);
+      color: var(--txt-0);
     }
   }
 
   form {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 
@@ -168,8 +166,6 @@
   input[type="email"],
   textarea,
   button {
-    background-color: transparent;
-    border: none;
     padding: 1rem;
     color: inherit;
     font: inherit;

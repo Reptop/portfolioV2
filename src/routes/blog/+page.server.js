@@ -1,7 +1,5 @@
 export async function load() {
   /** @type {Record<string, { metadata?: Record<string, any> }>} */
-
-  // Import all markdown files from the posts directory eagerly
   const modules = import.meta.glob('$lib/posts/*.md', { eager: true });
 
   const posts = Object.entries(modules)

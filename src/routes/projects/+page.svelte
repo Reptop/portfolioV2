@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
   export let data;
-  import TerminalAnimation from "$lib/components/animation.js";
+  import TerminalAnimation from "$lib/components/animation";
 </script>
 
 <main>
