@@ -8,6 +8,17 @@
   const postPromise = postModules[postPath]();
 </script>
 
+<svelte:head>
+  <title>{data.title || data.slug} — reptop</title>
+  {#if data.subtitle}
+    <meta name="description" content={data.subtitle} />
+    <meta property="og:description" content={data.subtitle} />
+    <meta name="twitter:description" content={data.subtitle} />
+  {/if}
+  <meta property="og:title" content="{data.title || data.slug} — reptop" />
+  <meta name="twitter:title" content="{data.title || data.slug} — reptop" />
+</svelte:head>
+
 <article class="post-shell">
   <a class="back" href="/blog"><span class="arrow">←</span>Back to blog</a>
 

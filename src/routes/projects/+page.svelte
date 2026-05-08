@@ -28,6 +28,9 @@
 
         <div class="card-body">
           <h2>{project.title || project.slug}</h2>
+          {#if project.summary}
+            <p class="summary">{project.summary}</p>
+          {/if}
           {#if project.hasVideo}
             <p class="demo-badge">Demo available</p>
           {/if}
@@ -124,6 +127,17 @@
     margin: 0;
     font-size: 1.3rem;
     color: var(--txt);
+  }
+
+  .summary {
+    margin: 0.45rem 0 0;
+    font-size: 0.88rem;
+    color: var(--txt-2);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .demo-badge {

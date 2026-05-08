@@ -6,6 +6,17 @@
   const projectPromise = projectModules[projectPath]();
 </script>
 
+<svelte:head>
+  <title>{data.title || data.slug} — reptop</title>
+  {#if data.summary}
+    <meta name="description" content={data.summary} />
+    <meta property="og:description" content={data.summary} />
+    <meta name="twitter:description" content={data.summary} />
+  {/if}
+  <meta property="og:title" content="{data.title || data.slug} — reptop" />
+  <meta name="twitter:title" content="{data.title || data.slug} — reptop" />
+</svelte:head>
+
 <main>
   <a class="back" href="/projects"
     ><span class="arrow">←</span>Back to projects</a

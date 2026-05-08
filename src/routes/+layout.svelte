@@ -4,25 +4,56 @@
   import "../app.css";
 
   let { children } = $props();
+
+  let menuOpen = $state(false);
+
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+  }
+
+  // Close menu on navigation
+  $effect(() => {
+    $page.url.pathname;
+    menuOpen = false;
+  });
 </script>
+
+<svelte:head>
+  <link rel="icon" href={favicon} />
+  <title>reptop</title>
+  <meta name="description" content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear." />
+  <meta property="og:title" content="reptop" />
+  <meta property="og:description" content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="reptop" />
+  <meta name="twitter:description" content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear." />
+</svelte:head>
 
 {#if $page.url.pathname !== "/"}
   <nav class="nav">
     <a href="/" class="logo">reptop</a>
 
-    <div class="links">
+    <div class="links" class:open={menuOpen}>
       <a href="/about">about</a>
       <a href="/projects">projects</a>
       <a href="/gear">gear</a>
       <a href="/blog">blog</a>
       <a href="/contact">contact</a>
     </div>
+
+    <button
+      class="menu-toggle"
+      aria-label={menuOpen ? "Close menu" : "Open menu"}
+      aria-expanded={menuOpen}
+      onclick={toggleMenu}
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </nav>
 {/if}
-
-<svelte:head>
-  <link rel="icon" href={favicon} />
-</svelte:head>
 
 {@render children()}
 
@@ -52,7 +83,6 @@
     text-decoration: underline var(--yellow) 2px;
   }
 
-  /* new: keyboard focus (logo too) */
   .logo:focus-visible {
     outline: 2px solid color-mix(in srgb, var(--yellow) 60%, transparent);
     outline-offset: 3px;
@@ -61,7 +91,7 @@
   .links {
     display: flex;
     gap: 0;
-    flex-wrap: wrap; /* new: avoids overflow on smaller widths */
+    flex-wrap: wrap;
   }
 
   .links a {
@@ -90,20 +120,77 @@
     outline-offset: 3px;
   }
 
-  /* new: small-screen stacking */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+  }
+
+  .menu-toggle:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--yellow) 60%, transparent);
+    outline-offset: 3px;
+  }
+
+  .bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--txt-2);
+    transition: background-color 140ms ease;
+  }
+
+  .menu-toggle:hover .bar {
+    background: var(--yellow);
+  }
+
   @media (max-width: 520px) {
     .nav {
-      justify-content: left;
+      position: relative;
+      justify-content: space-between;
       padding: 14px 12px;
       width: min(1100px, calc(100% - 16px));
+      flex-wrap: wrap;
     }
 
     .logo {
       font-size: 1.85rem;
     }
 
+    .menu-toggle {
+      display: flex;
+    }
+
     .links {
       display: none;
+      width: 100%;
+      flex-direction: column;
+      border-top: 1px solid color-mix(in srgb, var(--txt-3) 22%, transparent);
+      margin-top: 10px;
+      padding-top: 6px;
+    }
+
+    .links.open {
+      display: flex;
+    }
+
+    .links a {
+      font-size: 1.3rem;
+      padding: 10px 4px;
+    }
+
+    .links a + a::before {
+      display: none;
+    }
+
+    .links a + a {
+      border-top: 1px solid color-mix(in srgb, var(--txt-3) 14%, transparent);
     }
   }
 </style>
