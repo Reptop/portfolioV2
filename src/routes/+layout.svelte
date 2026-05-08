@@ -2,8 +2,11 @@
   import favicon from "$lib/assets/favicon.svg";
   import { page } from "$app/stores";
   import "../app.css";
+  import { inject } from "@vercel/analytics";
 
   let { children } = $props();
+
+  inject();
 
   let menuOpen = $state(false);
 

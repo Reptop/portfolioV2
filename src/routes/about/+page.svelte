@@ -76,14 +76,14 @@
         >
           github repo <span class="arrow">/&gt;</span>
         </a>
-
         <a
-          href="https://example.com"
+          href="/resume.pdf"
           class="external textlink"
           target="_blank"
           rel="noreferrer"
+          download
         >
-          analytics <span class="arrow">/&gt;</span>
+          resume <span class="arrow">/&gt;</span>
         </a>
       </div>
 

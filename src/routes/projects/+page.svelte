@@ -31,6 +31,14 @@
           {#if project.summary}
             <p class="summary">{project.summary}</p>
           {/if}
+          {#if project.stack}
+            <ul class="stack">
+              {#each project.stack.split(',') as tech}
+                <li>{tech.trim()}</li>
+              {/each}
+            </ul>
+          {/if}
+
           {#if project.hasVideo}
             <p class="demo-badge">Demo available</p>
           {/if}
@@ -138,6 +146,24 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .stack {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .stack li {
+    margin: 0;
+    padding: 0.12rem 0.4rem;
+    font-size: 0.75rem;
+    color: var(--txt-3);
+    border: 1px solid var(--bg-3);
+    background: var(--bg);
   }
 
   .demo-badge {

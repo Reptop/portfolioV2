@@ -30,12 +30,19 @@
         <a class="post-card" href={`/blog/${post.slug}`}>
           <p class="post-kicker">Post</p>
           <h2>{post.title || post.slug}</h2>
+          {#if post.subtitle}
+            <p class="subtitle">{post.subtitle}</p>
+          {/if}
           <div class="meta">
-            {#if post.date}
-              <span>{formatDate(post.date)}</span>
-            {:else}
-              <span>No publish date</span>
-            {/if}
+            <span class="meta-left">
+              {#if post.date}
+                <span>{formatDate(post.date)}</span>
+              {:else}
+                <span>No publish date</span>
+              {/if}
+              <span class="sep">·</span>
+              <span>{post.readMins} min read</span>
+            </span>
             <span class="arrow">Read <span aria-hidden="true">→</span></span>
           </div>
         </a>
@@ -104,6 +111,17 @@
     border-color: var(--green);
   }
 
+  .subtitle {
+    margin: 0.3rem 0 0;
+    font-size: 0.9rem;
+    color: var(--txt-2);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   .post-kicker {
     margin: 0;
     font-size: 0.72rem;
@@ -124,6 +142,17 @@
     gap: 0.8rem;
     color: var(--txt-2);
     font-size: 0.92rem;
+  }
+
+  .meta-left {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+
+  .sep {
+    color: var(--txt-3);
   }
 
   .arrow {

@@ -4,37 +4,30 @@
   import TerminalAnimation from "$lib/components/animation";
 
   let status = $state("submit ->");
+  let isSubmitting = $state(false);
   let emailCopied = $state(false);
   let discordCopied = $state(false);
 
   const handleSubmit = async (data) => {
     data.preventDefault();
+    if (isSubmitting) return;
 
+    isSubmitting = true;
     status = "submitting...";
 
     const formData = new FormData(data.currentTarget);
-
     const object = Object.fromEntries(formData);
-
     object.access_key = "a9167a8b-9460-479d-b544-bfc63ff2cf11";
-
-    const json = JSON.stringify(object);
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-
-      body: json,
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(object),
     });
 
     const result = await response.json();
-
-    if (result.success) status = "message sent!";
-    else status = "something went wrong :(";
+    status = result.success ? "message sent!" : "something went wrong :(";
+    isSubmitting = false;
   };
 
   const copyEmail = async () => {
@@ -95,17 +88,22 @@
 
   <h3>contact form</h3>
   <form onsubmit={handleSubmit}>
-    <input type="text" name="name" placeholder="name" required />
+    <label for="name" class="sr-only">Name</label>
+    <input id="name" type="text" name="name" placeholder="name" required />
+
+    <label for="email" class="sr-only">Email</label>
     <input
+      id="email"
       type="email"
       name="email"
       placeholder="email (if you want a reply)"
       required
     />
 
-    <textarea name="message" placeholder="your message..." required rows="4"
+    <label for="message" class="sr-only">Message</label>
+    <textarea id="message" name="message" placeholder="your message..." required rows="4"
     ></textarea>
-    <button type="submit">{status}</button>
+    <button type="submit" disabled={isSubmitting}>{status}</button>
   </form>
 </main>
 
@@ -156,6 +154,18 @@
     }
   }
 
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   form {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -196,8 +206,12 @@
   button {
     font-family: "Space Mono", monospace;
     padding: 1rem;
-    &:hover {
+    &:hover:not(:disabled) {
       border: 2px solid var(--txt-2);
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   }
 
