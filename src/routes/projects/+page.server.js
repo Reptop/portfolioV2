@@ -12,6 +12,7 @@ export async function load() {
         slug,
         title: metadata.title || null,
         stack: metadata.stack || null,
+        status: metadata.status || null,
         date: metadata.date || null,
         cover: metadata.cover || null,
         hasVideo: typeof metadata.video === 'string' && metadata.video.startsWith('http'),

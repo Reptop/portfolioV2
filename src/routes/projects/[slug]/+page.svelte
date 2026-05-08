@@ -97,6 +97,23 @@
       <svelte:component this={project.default} />
     {/await}
   </article>
+
+  <nav class="pagination">
+    {#if data.prev}
+      <a href="/projects/{data.prev.slug}" class="page-link prev">
+        <span class="page-dir">← newer</span>
+        <span class="page-title">{data.prev.title || data.prev.slug}</span>
+      </a>
+    {:else}
+      <div></div>
+    {/if}
+    {#if data.next}
+      <a href="/projects/{data.next.slug}" class="page-link next">
+        <span class="page-dir">older →</span>
+        <span class="page-title">{data.next.title || data.next.slug}</span>
+      </a>
+    {/if}
+  </nav>
 </main>
 
 <style>
@@ -305,6 +322,47 @@
     margin-bottom: 0;
   }
 
+  .pagination {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .page-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--bg-3);
+    background: var(--bg-2);
+    transition: border-color 140ms ease, filter 140ms ease;
+  }
+
+  .page-link:hover {
+    border-color: var(--yellow);
+    filter: brightness(1.05);
+  }
+
+  .page-link.next {
+    text-align: right;
+  }
+
+  .page-dir {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--txt-3);
+  }
+
+  .page-title {
+    font-size: 0.95rem;
+    color: var(--txt);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   @media (max-width: 700px) {
     .gallery {
       grid-template-columns: 1fr;
@@ -313,6 +371,14 @@
     .info-row {
       grid-template-columns: 1fr;
       gap: 0.35rem;
+    }
+
+    .pagination {
+      grid-template-columns: 1fr;
+    }
+
+    .page-link.next {
+      text-align: left;
     }
   }
 </style>

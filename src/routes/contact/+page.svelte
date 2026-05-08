@@ -5,6 +5,7 @@
 
   let status = $state("submit ->");
   let isSubmitting = $state(false);
+  let submitted = $state(false);
   let emailCopied = $state(false);
   let discordCopied = $state(false);
 
@@ -26,7 +27,11 @@
     });
 
     const result = await response.json();
-    status = result.success ? "message sent!" : "something went wrong :(";
+    if (result.success) {
+      submitted = true;
+    } else {
+      status = "something went wrong :(";
+    }
     isSubmitting = false;
   };
 
@@ -87,6 +92,14 @@
   </div>
 
   <h3>contact form</h3>
+  {#if submitted}
+    <div class="success">
+      <p class="success-msg">message sent — i'll get back to you soon.</p>
+      <button class="reset-btn" onclick={() => { submitted = false; status = 'submit ->'; }}>
+        send another
+      </button>
+    </div>
+  {:else}
   <form onsubmit={handleSubmit}>
     <label for="name" class="sr-only">Name</label>
     <input id="name" type="text" name="name" placeholder="name" required />
@@ -105,6 +118,7 @@
     ></textarea>
     <button type="submit" disabled={isSubmitting}>{status}</button>
   </form>
+  {/if}
 </main>
 
 <style>
@@ -152,6 +166,38 @@
     &:hover {
       color: var(--txt-0);
     }
+  }
+
+  .success {
+    border: 2px solid color-mix(in srgb, var(--green), transparent 45%);
+    background: color-mix(in srgb, var(--green), transparent 90%);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .success-msg {
+    margin: 0;
+    color: var(--green);
+    font-size: 1.125rem;
+    font-family: "Space Mono", monospace;
+  }
+
+  .reset-btn {
+    font-family: "Space Mono", monospace;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--green), transparent 50%);
+    background: none;
+    color: var(--green);
+    cursor: pointer;
+    transition: background 140ms ease;
+  }
+
+  .reset-btn:hover {
+    background: color-mix(in srgb, var(--green), transparent 82%);
   }
 
   .sr-only {

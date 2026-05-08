@@ -38,11 +38,11 @@
     <a href="/" class="logo">reptop</a>
 
     <div class="links" class:open={menuOpen}>
-      <a href="/about">about</a>
-      <a href="/projects">projects</a>
-      <a href="/gear">gear</a>
-      <a href="/blog">blog</a>
-      <a href="/contact">contact</a>
+      <a href="/about" aria-current={$page.url.pathname.startsWith('/about') ? 'page' : undefined}>about</a>
+      <a href="/projects" aria-current={$page.url.pathname.startsWith('/projects') ? 'page' : undefined}>projects</a>
+      <a href="/gear" aria-current={$page.url.pathname.startsWith('/gear') ? 'page' : undefined}>gear</a>
+      <a href="/blog" aria-current={$page.url.pathname.startsWith('/blog') ? 'page' : undefined}>blog</a>
+      <a href="/contact" aria-current={$page.url.pathname.startsWith('/contact') ? 'page' : undefined}>contact</a>
     </div>
 
     <button
@@ -115,6 +115,10 @@
 
   .links a:hover {
     background: color-mix(in srgb, var(--bg-2) 65%, transparent);
+    color: var(--yellow);
+  }
+
+  .links a[aria-current="page"] {
     color: var(--yellow);
   }
 

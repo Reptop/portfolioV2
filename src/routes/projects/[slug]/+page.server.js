@@ -6,6 +6,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   year: 'numeric'
 });
 
+/** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
   const { slug } = params;
   /** @type {Record<string, { metadata?: Record<string, any> }>} */
@@ -46,6 +47,18 @@ export async function load({ params }) {
   if (metadata.video)
     info.push({ label: 'Video', value: metadata.video });
 
+  const allProjects = Object.entries(modules)
+    .map(([p, mod]) => ({
+      slug: p.split('/').pop()?.replace('.md', '') ?? '',
+      title: mod.metadata?.title || null,
+      date: mod.metadata?.date || null,
+    }))
+    .sort((a, b) => ((a.date || '') < (b.date || '') ? 1 : -1));
+
+  const idx = allProjects.findIndex((p) => p.slug === slug);
+  const prev = idx > 0 ? allProjects[idx - 1] : null;
+  const next = idx < allProjects.length - 1 ? allProjects[idx + 1] : null;
+
   return {
     slug,
     title: metadata.title || null,
@@ -55,6 +68,8 @@ export async function load({ params }) {
     tags,
     cover: metadata.cover || null,
     gallery,
-    info
+    info,
+    prev,
+    next
   };
 }

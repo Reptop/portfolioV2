@@ -1,6 +1,9 @@
 <script lang="ts">
   export let data;
   import TerminalAnimation from "$lib/components/animation";
+
+  const formatDate = (date: string) =>
+    new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" }).format(new Date(date));
 </script>
 
 <main>
@@ -36,12 +39,17 @@
             </ul>
           {/if}
 
-          {#if project.hasVideo}
-            <p class="demo-badge">Demo available</p>
-          {/if}
+          <div class="badges">
+            {#if project.status}
+              <span class="status">{project.status}</span>
+            {/if}
+            {#if project.hasVideo}
+              <span class="demo-badge">Demo available</span>
+            {/if}
+          </div>
           <p class="meta">
             {#if project.date}
-              <span>{project.date}</span>
+              <span>{formatDate(project.date)}</span>
             {/if}
             <span>View details →</span>
           </p>
@@ -153,9 +161,24 @@
     background: var(--bg);
   }
 
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.5rem 0 0;
+  }
+
+  .status {
+    padding: 0.16rem 0.48rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid color-mix(in srgb, var(--green), transparent 55%);
+    background: color-mix(in srgb, var(--green), transparent 88%);
+  }
+
   .demo-badge {
-    margin: 0.45rem 0 0;
-    width: fit-content;
     padding: 0.16rem 0.48rem;
     font-size: 0.75rem;
     letter-spacing: 0.04em;
