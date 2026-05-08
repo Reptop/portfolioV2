@@ -2,15 +2,23 @@
   import { Canvas } from "@threlte/core";
   import Scene from "./Scene.svelte";
   import BackgroundImage from "$lib/assets/bg.png";
+  import { fade } from "svelte/transition";
+
+  let modelLoaded = $state(false);
 </script>
 
 <main>
   <div class="bg" style="background-image: url({BackgroundImage});"></div>
   <div class="wrap">
-    <!-- Load the 3D model canvas here... -->
     <Canvas>
-      <Scene />
+      <Scene onloaded={() => (modelLoaded = true)} />
     </Canvas>
+
+    {#if !modelLoaded}
+      <div class="model-loading" out:fade={{ duration: 400 }}>
+        <span>loading model<span class="dots">...</span></span>
+      </div>
+    {/if}
 
     <div class="content">
       <div class="row">
@@ -59,6 +67,27 @@
     width: min(48rem, 100%);
     border-radius: 18px;
     overflow: hidden;
+  }
+
+  .model-loading {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    color: var(--txt-3);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .dots {
+    animation: blink 1.2s ease-in-out infinite;
   }
 
   /* Canvas background layer */
