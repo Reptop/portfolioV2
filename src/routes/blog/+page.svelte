@@ -15,7 +15,12 @@
 
 <section class="blog-index">
   <header class="hero">
-    <h1 in:TerminalAnimation={{ duration: 270 }}>blog</h1>
+    <div class="title-row">
+      <h1 in:TerminalAnimation={{ duration: 270 }}>blog</h1>
+      <a href="/rss.xml" class="rss-link" target="_blank" rel="noreferrer" aria-label="RSS feed">
+        rss
+      </a>
+    </div>
 
     <p class="sub">
       For when I want to talk about something really cool or something really
@@ -60,8 +65,30 @@
     margin-bottom: 1.75rem;
   }
 
+  .title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
   h1 {
     margin: 0.35rem 0 0.75rem;
+  }
+
+  .rss-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+    border: 1px solid color-mix(in srgb, var(--orange), transparent 55%);
+    background: color-mix(in srgb, var(--orange), transparent 90%);
+    padding: 0.15rem 0.45rem;
+    transition: background 140ms ease;
+    white-space: nowrap;
+  }
+
+  .rss-link:hover {
+    background: color-mix(in srgb, var(--orange), transparent 78%);
   }
 
   .sub {

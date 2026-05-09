@@ -1,9 +1,15 @@
 <script>
   export let data;
+  import { copyCode } from "$lib/actions/copyCode";
+  import Lightbox from "$lib/components/Lightbox.svelte";
+
   const projectModules = import.meta.glob("$lib/projects/*.md");
   const projectPath = `/src/lib/projects/${data.slug}.md`;
   /** @type {Promise<any>} */
   const projectPromise = projectModules[projectPath]();
+
+  let lightboxOpen = false;
+  let lightboxIndex = 0;
 </script>
 
 <svelte:head>
@@ -82,17 +88,31 @@
     <section class="gallery">
       {#each data.gallery as image, index}
         <figure class="gallery-item">
-          <img
-            src={image}
-            alt={`${data.title || data.slug} screenshot ${index + 1}`}
-            loading="lazy"
-          />
+          <button
+            class="gallery-btn"
+            onclick={() => { lightboxIndex = index; lightboxOpen = true; }}
+            aria-label="View image {index + 1} fullscreen"
+          >
+            <img
+              src={image}
+              alt={`${data.title || data.slug} screenshot ${index + 1}`}
+              loading="lazy"
+            />
+          </button>
         </figure>
       {/each}
     </section>
   {/if}
 
-  <article class="content">
+  {#if lightboxOpen}
+    <Lightbox
+      images={data.gallery}
+      startIndex={lightboxIndex}
+      onclose={() => (lightboxOpen = false)}
+    />
+  {/if}
+
+  <article class="content" use:copyCode>
     {#await projectPromise then project}
       <svelte:component this={project.default} />
     {/await}
@@ -252,11 +272,25 @@
     overflow: hidden;
   }
 
+  .gallery-btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: zoom-in;
+  }
+
   .gallery-item img {
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
     display: block;
+    transition: filter 140ms ease;
+  }
+
+  .gallery-btn:hover img {
+    filter: brightness(1.08);
   }
 
   .content {

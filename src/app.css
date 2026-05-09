@@ -53,6 +53,43 @@
   }
 }
 
+/* View transitions — only animate old page out; new page appears instantly
+   so Svelte's TerminalAnimation can run without opacity compounding. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes vt-fade-out {
+    to { opacity: 0; }
+  }
+
+  ::view-transition-old(root) {
+    animation: 120ms ease out vt-fade-out;
+  }
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+/* Copy code button (injected by copyCode action) */
+.copy-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  padding: 0.18rem 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--txt-3);
+  background: var(--bg-3);
+  border: 1px solid color-mix(in srgb, var(--txt-3), transparent 60%);
+  cursor: pointer;
+  transition: color 140ms ease, background 140ms ease;
+  z-index: 1;
+}
+
+.copy-btn:hover {
+  color: var(--txt);
+  background: color-mix(in srgb, var(--bg-3), var(--bg) 30%);
+}
+
 html {
   height: 100%;
   scrollbar-width: thin;

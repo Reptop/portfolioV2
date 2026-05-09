@@ -3,10 +3,22 @@
   import { page } from "$app/stores";
   import "../app.css";
   import { inject } from "@vercel/analytics";
+  import { onNavigate } from "$app/navigation";
+  import CommandPalette from "$lib/components/CommandPalette.svelte";
 
   let { children } = $props();
 
   inject();
+
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 
   let menuOpen = $state(false);
 
@@ -23,6 +35,7 @@
 
 <svelte:head>
   <link rel="icon" href={favicon} />
+  <link rel="alternate" type="application/rss+xml" title="reptop blog" href="/rss.xml" />
   <title>reptop</title>
   <meta name="description" content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear." />
   <meta property="og:title" content="reptop" />
@@ -59,6 +72,8 @@
 {/if}
 
 {@render children()}
+
+<CommandPalette />
 
 <style>
   .nav {

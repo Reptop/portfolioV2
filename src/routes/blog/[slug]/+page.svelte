@@ -1,5 +1,6 @@
 <script lang="ts">
   export let data;
+  import { copyCode } from "$lib/actions/copyCode";
 
   const postModules = import.meta.glob("$lib/posts/*.md");
   const postPath = `/src/lib/posts/${data.slug}.md`;
@@ -54,7 +55,7 @@
     <img class="cover" src={data.cover} alt={data.title || data.slug} />
   {/if}
 
-  <section class="prose">
+  <section class="prose" use:copyCode>
     {#await postPromise then post}
       <svelte:component this={post.default} />
     {:catch err}
