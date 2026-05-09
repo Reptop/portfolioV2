@@ -8,7 +8,7 @@ export function copyCode(node: HTMLElement) {
     container.style.position = 'relative';
 
     const btn = document.createElement('button');
-    btn.className = 'copy-btn';
+    btn.className = 'code-copy-btn';
     btn.setAttribute('aria-label', 'Copy code');
     btn.textContent = 'copy';
     container.appendChild(btn);

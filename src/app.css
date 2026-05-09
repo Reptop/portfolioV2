@@ -55,7 +55,7 @@
 
 
 /* Copy code button (injected by copyCode action) */
-.copy-btn {
+.code-copy-btn {
   position: absolute;
   top: 0.4rem;
   right: 0.4rem;
@@ -71,7 +71,7 @@
   z-index: 1;
 }
 
-.copy-btn:hover {
+.code-copy-btn:hover {
   color: var(--txt);
   background: color-mix(in srgb, var(--bg-3), var(--bg) 30%);
 }
