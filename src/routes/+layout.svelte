@@ -4,6 +4,7 @@
   import "../app.css";
   import { inject } from "@vercel/analytics";
   import CommandPalette from "$lib/components/CommandPalette.svelte";
+  import Terminal from "$lib/components/Terminal.svelte";
 
   let { children } = $props();
 
@@ -63,6 +64,7 @@
 {@render children()}
 
 <CommandPalette />
+<Terminal />
 
 <style>
   .nav {

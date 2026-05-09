@@ -1,6 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import TerminalAnimation from "$lib/components/animation";
+  export let data;
 </script>
 
 <main>
@@ -103,6 +104,34 @@
           >
         </div>
       </div>
+    </div>
+
+    <h2>activity</h2>
+
+    <div class="activity">
+      {#if data.activity}
+        <p class="commit-summary">
+          <span class="commit-count">{data.activity.commitCount}</span>
+          commits to public repos in the last 30 days
+        </p>
+        {#if data.activity.repos.length}
+          <ul class="repo-list">
+            {#each data.activity.repos as repo}
+              <li>
+                <a
+                  href="https://github.com/Reptop/{repo.name}"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="repo-link"
+                >{repo.name}</a>
+                <span class="repo-count">{repo.count}</span>
+              </li>
+            {/each}
+          </ul>
+        {/if}
+      {:else}
+        <p class="activity-unavailable">activity unavailable</p>
+      {/if}
     </div>
 
     <h2>palette</h2>
@@ -330,6 +359,71 @@
 
   .v {
     color: var(--txt-2);
+  }
+
+  /* Activity */
+  .activity {
+    margin: 0.75rem 0 1.25rem;
+    background: var(--bg-2);
+    border: 2px solid var(--bg-3);
+    padding: 0.85rem 1rem;
+  }
+
+  .commit-summary {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--txt-2);
+  }
+
+  .commit-count {
+    color: var(--green);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+
+  .repo-list {
+    list-style: none;
+    margin: 0.65rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .repo-list li {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .repo-link {
+    font-size: 0.95rem;
+    color: var(--txt-2);
+    text-decoration: underline;
+    text-decoration-color: var(--bg-3);
+    text-underline-offset: 3px;
+    &:hover {
+      color: var(--yellow);
+      text-decoration-color: var(--yellow);
+    }
+  }
+
+  .repo-count {
+    font-size: 0.78rem;
+    color: var(--green);
+    border: 1px solid color-mix(in srgb, var(--green), transparent 60%);
+    background: color-mix(in srgb, var(--green), transparent 88%);
+    padding: 0.1rem 0.4rem;
+    white-space: nowrap;
+  }
+
+  .activity-unavailable {
+    margin: 0;
+    color: var(--txt-3);
+    font-size: 0.9rem;
   }
 
   /* Palette: less cramped, responsive */
