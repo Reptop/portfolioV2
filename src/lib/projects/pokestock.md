@@ -6,7 +6,7 @@ source: "https://github.com/Reptop/PokeStock"
 stack: "Svelte, SvelteKit, Typescript"
 date: "2025-05-12"
 status: "Finished in 2025"
-cover: "/projects/pokestock.png"
+cover: "/projects/pokestock.webp"
 ---
 
 This project is aimed to combat against the problem of pokemon card vending machines being scalped and resold for much higher prices. The website allows users to track pokemon vending machine stock levels in real time. Stock levels are reported by users and displayed on a map, allowing others to find nearby machines with the card set they want. I built this project using 

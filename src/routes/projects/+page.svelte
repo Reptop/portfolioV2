@@ -22,7 +22,8 @@
             <img
               src={project.cover}
               alt={project.title || project.slug}
-              loading="lazy"
+              loading={project === data.projects[0] ? 'eager' : 'lazy'}
+              fetchpriority={project === data.projects[0] ? 'high' : 'auto'}
             />
           {:else}
             <div class="media-fallback">No cover image</div>

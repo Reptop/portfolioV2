@@ -7,7 +7,7 @@ stack: "OpenGL, C++, Game Development"
 date: "2025-03-01"
 status: "Finished in 2025"
 video: "https://www.youtube.com/watch?v=YqeFmcZqoCc"
-cover: "/projects/fire.png"
+cover: "/projects/fire.webp"
 ---
 
 ### Context

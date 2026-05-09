@@ -2,7 +2,7 @@
 title: "Why Math + CS is so important to me"
 subtitle: "I put a gif of Shisa here because I love her"
 date: "2026-03-02"
-cover: "/projects/mygoat2.gif"
+cover: "/projects/mygoat2.mp4"
 ---
 
 ### My History With Math 

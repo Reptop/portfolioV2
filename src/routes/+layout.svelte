@@ -45,6 +45,7 @@
       <a href="/projects" aria-current={$page.url.pathname.startsWith('/projects') ? 'page' : undefined}>projects</a>
       <a href="/gear" aria-current={$page.url.pathname.startsWith('/gear') ? 'page' : undefined}>gear</a>
       <a href="/blog" aria-current={$page.url.pathname.startsWith('/blog') ? 'page' : undefined}>blog</a>
+      <a href="/now" aria-current={$page.url.pathname.startsWith('/now') ? 'page' : undefined}>now</a>
       <a href="/contact" aria-current={$page.url.pathname.startsWith('/contact') ? 'page' : undefined}>contact</a>
     </div>
 

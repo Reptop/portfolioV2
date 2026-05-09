@@ -52,7 +52,11 @@
   </header>
 
   {#if data.cover}
-    <img class="cover" src={data.cover} alt={data.title || data.slug} />
+    {#if data.cover.endsWith('.mp4')}
+      <video class="cover" src={data.cover} autoplay loop muted playsinline></video>
+    {:else}
+      <img class="cover" src={data.cover} alt={data.title || data.slug} />
+    {/if}
   {/if}
 
   <section class="prose" use:copyCode>

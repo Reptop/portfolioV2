@@ -109,26 +109,20 @@
     <h2>activity</h2>
 
     <div class="activity">
-      {#if data.activity}
-        <p class="commit-summary">
-          <span class="commit-count">{data.activity.commitCount}</span>
-          commits to public repos in the last 30 days
-        </p>
-        {#if data.activity.repos.length}
-          <ul class="repo-list">
-            {#each data.activity.repos as repo}
-              <li>
-                <a
-                  href="https://github.com/Reptop/{repo.name}"
-                  target="_blank"
-                  rel="noreferrer"
-                  class="repo-link"
-                >{repo.name}</a>
-                <span class="repo-count">{repo.count}</span>
-              </li>
-            {/each}
-          </ul>
-        {/if}
+      {#if data.activity && data.activity.length}
+        <ul class="repo-list">
+          {#each data.activity as repo}
+            <li>
+              <a href={repo.url} target="_blank" rel="noreferrer" class="repo-link">
+                {repo.name}
+              </a>
+              <span class="repo-meta">
+                {#if repo.language}<span class="lang">{repo.language}</span>{/if}
+                <span class="when">{repo.when}</span>
+              </span>
+            </li>
+          {/each}
+        </ul>
       {:else}
         <p class="activity-unavailable">activity unavailable</p>
       {/if}
@@ -369,22 +363,9 @@
     padding: 0.85rem 1rem;
   }
 
-  .commit-summary {
-    margin: 0;
-    font-size: 1rem;
-    color: var(--txt-2);
-  }
-
-  .commit-count {
-    color: var(--green);
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-right: 0.3rem;
-  }
-
   .repo-list {
     list-style: none;
-    margin: 0.65rem 0 0;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -396,7 +377,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
   }
 
   .repo-link {
@@ -411,12 +393,23 @@
     }
   }
 
-  .repo-count {
+  .repo-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .lang {
+    font-size: 0.75rem;
+    color: var(--txt-3);
+    border: 1px solid var(--bg-3);
+    padding: 0.1rem 0.35rem;
+  }
+
+  .when {
     font-size: 0.78rem;
     color: var(--green);
-    border: 1px solid color-mix(in srgb, var(--green), transparent 60%);
-    background: color-mix(in srgb, var(--green), transparent 88%);
-    padding: 0.1rem 0.4rem;
     white-space: nowrap;
   }
 

@@ -7,6 +7,10 @@
   let modelLoaded = $state(false);
 </script>
 
+<svelte:head>
+  <link rel="preload" href="/mega_delphox_za/scene.optimized.glb" as="fetch" crossorigin="anonymous" />
+</svelte:head>
+
 <main>
   <div class="bg" style="background-image: url({BackgroundImage});"></div>
   <div class="wrap">

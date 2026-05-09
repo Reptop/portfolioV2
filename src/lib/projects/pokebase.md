@@ -6,8 +6,8 @@ source: "https://github.com/Reptop/PokeStock"
 stack: "mySQL, Vite, React"
 date: "2025-11-12"
 status: "Finished in 2025"
-cover: "/projects/pokebase.png"
-gallery: ["/projects/pokebase2.png", "/projects/pokebase3.png"]
+cover: "/projects/pokebase.webp"
+gallery: ["/projects/pokebase2.webp", "/projects/pokebase3.webp"]
 ---
 
 ### Context 

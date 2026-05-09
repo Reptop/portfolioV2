@@ -4,36 +4,42 @@ export async function load({ setHeaders }: { setHeaders: (h: Record<string, stri
 
   try {
     const res = await fetch(
-      'https://api.github.com/users/Reptop/events/public?per_page=100',
+      'https://api.github.com/users/Reptop/repos?sort=pushed&per_page=6&type=public',
       { headers: { Accept: 'application/vnd.github.v3+json' } }
     );
 
     if (!res.ok) return { activity: null };
 
-    const events: any[] = await res.json();
-    const cutoff = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    const repos: any[] = await res.json();
+    const now = Date.now();
 
-    let commitCount = 0;
-    const repoMap = new Map<string, { name: string; count: number }>();
+    const activity = repos
+      .filter((r) => !r.fork && r.pushed_at)
+      .map((r) => {
+        const diffMs = now - new Date(r.pushed_at).getTime();
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-    for (const event of events) {
-      if (event.type !== 'PushEvent') continue;
-      if (new Date(event.created_at).getTime() < cutoff) continue;
+        let when: string;
+        if (diffDays === 0)       when = 'today';
+        else if (diffDays === 1)  when = 'yesterday';
+        else if (diffDays < 7)    when = `${diffDays} days ago`;
+        else if (diffDays < 14)   when = '1 week ago';
+        else if (diffDays < 30)   when = `${Math.floor(diffDays / 7)} weeks ago`;
+        else if (diffDays < 60)   when = '1 month ago';
+        else                      when = `${Math.floor(diffDays / 30)} months ago`;
 
-      const commits: number = event.payload?.commits?.length ?? 0;
-      commitCount += commits;
+        return {
+          name: r.name as string,
+          url: r.html_url as string,
+          language: (r.language as string) ?? null,
+          when,
+          diffDays,
+        };
+      })
+      .slice(0, 5);
 
-      const name: string = event.repo.name.split('/')[1];
-      repoMap.set(name, { name, count: (repoMap.get(name)?.count ?? 0) + commits });
-    }
-
-    return {
-      activity: {
-        commitCount,
-        repos: [...repoMap.values()].sort((a, b) => b.count - a.count).slice(0, 5),
-      },
-    };
+    return { activity };
   } catch {
     return { activity: null };
   }
-};
+}

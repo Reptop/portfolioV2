@@ -4,32 +4,42 @@ export type Command = {
   href: string;
 };
 
-const projectModules = import.meta.glob('./projects/*.md', { eager: true }) as Record<
+const projectGlob = import.meta.glob('./projects/*.md') as Record<
   string,
-  { metadata?: Record<string, unknown> }
+  () => Promise<{ metadata?: Record<string, unknown> }>
 >;
-const postModules = import.meta.glob('./posts/*.md', { eager: true }) as Record<
+const postGlob = import.meta.glob('./posts/*.md') as Record<
   string,
-  { metadata?: Record<string, unknown> }
+  () => Promise<{ metadata?: Record<string, unknown> }>
 >;
 
 const slug = (path: string) => path.split('/').pop()!.replace('.md', '');
 
-export const commands: Command[] = [
+const staticCommands: Command[] = [
   { type: 'page', label: 'home',     href: '/'        },
   { type: 'page', label: 'about',    href: '/about'   },
   { type: 'page', label: 'projects', href: '/projects'},
   { type: 'page', label: 'blog',     href: '/blog'    },
   { type: 'page', label: 'gear',     href: '/gear'    },
+  { type: 'page', label: 'now',      href: '/now'     },
   { type: 'page', label: 'contact',  href: '/contact' },
-  ...Object.entries(projectModules).map(([path, mod]) => ({
-    type: 'project' as const,
-    label: (mod.metadata?.title as string) ?? slug(path),
-    href:  `/projects/${slug(path)}`,
-  })),
-  ...Object.entries(postModules).map(([path, mod]) => ({
-    type: 'post' as const,
-    label: (mod.metadata?.title as string) ?? slug(path),
-    href:  `/blog/${slug(path)}`,
-  })),
 ];
+
+export async function loadCommands(): Promise<Command[]> {
+  const [projects, posts] = await Promise.all([
+    Promise.all(
+      Object.entries(projectGlob).map(async ([path, load]) => {
+        const mod = await load();
+        return { type: 'project' as const, label: (mod.metadata?.title as string) ?? slug(path), href: `/projects/${slug(path)}` };
+      })
+    ),
+    Promise.all(
+      Object.entries(postGlob).map(async ([path, load]) => {
+        const mod = await load();
+        return { type: 'post' as const, label: (mod.metadata?.title as string) ?? slug(path), href: `/blog/${slug(path)}` };
+      })
+    ),
+  ]);
+
+  return [...staticCommands, ...projects, ...posts];
+}

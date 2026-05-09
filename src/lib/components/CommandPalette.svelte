@@ -1,10 +1,12 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { commands, type Command } from '$lib/palette-data';
+  import { loadCommands, type Command } from '$lib/palette-data';
 
   let open = $state(false);
   let query = $state('');
   let selectedIndex = $state(0);
+  let commands = $state<Command[]>([]);
+  let commandsLoaded = false;
   let dialogEl: HTMLDialogElement | undefined = $state();
   let inputEl: HTMLInputElement | undefined = $state();
   let listEl: HTMLUListElement | undefined = $state();
@@ -35,12 +37,16 @@
       ?.scrollIntoView({ block: 'nearest' });
   });
 
-  function openPalette() {
+  async function openPalette() {
     open = true;
     query = '';
     selectedIndex = 0;
     dialogEl?.showModal();
     setTimeout(() => inputEl?.focus(), 0);
+    if (!commandsLoaded) {
+      commands = await loadCommands();
+      commandsLoaded = true;
+    }
   }
 
   function closePalette() {
