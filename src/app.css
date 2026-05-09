@@ -53,20 +53,6 @@
   }
 }
 
-/* View transitions — only animate old page out; new page appears instantly
-   so Svelte's TerminalAnimation can run without opacity compounding. */
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes vt-fade-out {
-    to { opacity: 0; }
-  }
-
-  ::view-transition-old(root) {
-    animation: 120ms ease out vt-fade-out;
-  }
-  ::view-transition-new(root) {
-    animation: none;
-  }
-}
 
 /* Copy code button (injected by copyCode action) */
 .copy-btn {

@@ -3,22 +3,11 @@
   import { page } from "$app/stores";
   import "../app.css";
   import { inject } from "@vercel/analytics";
-  import { onNavigate } from "$app/navigation";
   import CommandPalette from "$lib/components/CommandPalette.svelte";
 
   let { children } = $props();
 
   inject();
-
-  onNavigate((navigation) => {
-    if (!document.startViewTransition) return;
-    return new Promise((resolve) => {
-      document.startViewTransition(async () => {
-        resolve();
-        await navigation.complete;
-      });
-    });
-  });
 
   let menuOpen = $state(false);
 
