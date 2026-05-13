@@ -1,42 +1,71 @@
-# sv
+# Raed Kabir — Portfolio V2
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Personal portfolio and blog. Features a 3D interactive scene, markdown-driven project and blog pages, a command palette, and a `/now` page with a terminal animation.
 
-## Creating a project
+## Tech Stack
 
-If you're seeing this, you've probably already done this step. Congrats!
+| Layer | Tool |
+|---|---|
+| Framework | [SvelteKit](https://kit.svelte.dev/) |
+| Language | TypeScript |
+| 3D | [Three.js](https://threejs.org/) + [Threlte](https://threlte.dev/) |
+| Markdown | [mdsvex](https://mdsvex.com/) |
+| Syntax highlighting | [rehype-pretty-code](https://rehype-pretty-code.netlify.app/) |
+| Styling | CSS (vanilla) |
+| Analytics | [Vercel Analytics](https://vercel.com/analytics) |
+| Build | [Vite](https://vite.dev/) |
+| Deploy | [Vercel](https://vercel.com/) |
 
-```sh
-# create a new project
-npx sv create my-app
+## Project Tree
+
+```
+src/
+├── app.css                  # global styles
+├── app.html                 # HTML shell
+├── lib/
+│   ├── actions/
+│   │   └── copyCode.ts      # copy-to-clipboard action for code blocks
+│   ├── assets/
+│   │   ├── bg.png
+│   │   ├── favicon.svg
+│   │   └── mega_delphox_za/ # 3D model (GLTF + textures)
+│   ├── components/
+│   │   ├── animation.ts     # animation utilities
+│   │   ├── CommandPalette.svelte
+│   │   ├── Lightbox.svelte
+│   │   └── Terminal.svelte
+│   ├── gear/                # gear page markdown entries
+│   ├── posts/               # blog post markdown files
+│   ├── projects/            # project markdown files
+│   ├── palette-data.ts      # command palette entries
+│   └── profile.ts           # shared profile data
+└── routes/
+    ├── +layout.svelte       # site-wide layout
+    ├── +page.svelte         # home page (3D scene)
+    ├── Scene.svelte         # Three.js / Threlte scene
+    ├── about/
+    ├── blog/[slug]/
+    ├── contact/
+    ├── gear/
+    ├── now/
+    ├── projects/[slug]/
+    ├── rss.xml/
+    └── sitemap.xml/
+
+static/
+├── mega_delphox_za/         # optimised 3D model served at runtime
+├── projects/                # project images and videos
+└── resume.pdf
 ```
 
-To recreate this project with the same configuration:
+## Development
 
 ```sh
-# recreate this project
-npx sv create --template minimal --types ts --install npm portfolio
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of your app:
 
 ```sh
-npm run build
+npm run build    # production build
+npm run preview  # preview production build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
