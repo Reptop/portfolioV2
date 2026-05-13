@@ -44,6 +44,9 @@
         <a class="nav" href="/gear"
           ><span class="arrow">-&gt;</span><span class="slash">/</span>gear</a
         >
+        <a class="nav" href="/now"
+          ><span class="arrow">-&gt;</span><span class="slash">/</span>now</a
+        >
         <a class="nav" href="/contact"
           ><span class="arrow">-&gt;</span><span class="slash">/</span
           >contact</a
@@ -82,8 +85,13 @@
   }
 
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 
   .dots {

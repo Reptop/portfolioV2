@@ -1,18 +1,23 @@
+<script lang="ts">
+  import TerminalAnimation from "$lib/components/animation";
+</script>
+
 <svelte:head>
   <title>now — reptop</title>
   <meta name="description" content="What Raed Kabir is currently working on, learning, and thinking about." />
 </svelte:head>
 
 <main>
-  <h1>now</h1>
+  <h1 in:TerminalAnimation={{ duration: 270 }}>now</h1>
 
-  <p class="meta">
+  <p class="meta" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
     Last updated May 2026 ·
     <a href="https://nownownow.com/about" target="_blank" rel="noreferrer" class="what-link">
       what is this?
     </a>
   </p>
 
+  <div in:TerminalAnimation={{ delay: 240, duration: 300 }}>
   <section class="block">
     <h2>working on</h2>
     <ul>
@@ -47,6 +52,7 @@
       <li>collecting Chiikawa plushies</li>
     </ul>
   </section>
+  </div>
 </main>
 
 <style>
