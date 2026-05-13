@@ -22,7 +22,10 @@
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify(object),
     });
 
@@ -95,29 +98,39 @@
   {#if submitted}
     <div class="success">
       <p class="success-msg">message sent — i'll get back to you soon.</p>
-      <button class="reset-btn" onclick={() => { submitted = false; status = 'submit ->'; }}>
+      <button
+        class="reset-btn"
+        onclick={() => {
+          submitted = false;
+          status = "submit ->";
+        }}
+      >
         send another
       </button>
     </div>
   {:else}
-  <form onsubmit={handleSubmit}>
-    <label for="name" class="sr-only">Name</label>
-    <input id="name" type="text" name="name" placeholder="name" required />
+    <form onsubmit={handleSubmit}>
+      <label for="name" class="sr-only">Name</label>
+      <input id="name" type="text" name="name" placeholder="name" required />
 
-    <label for="email" class="sr-only">Email</label>
-    <input
-      id="email"
-      type="email"
-      name="email"
-      placeholder="email (if you want a reply)"
-      required
-    />
+      <label for="email" class="sr-only">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        placeholder="email (if you want a reply)"
+      />
 
-    <label for="message" class="sr-only">Message</label>
-    <textarea id="message" name="message" placeholder="your message..." required rows="4"
-    ></textarea>
-    <button type="submit" disabled={isSubmitting}>{status}</button>
-  </form>
+      <label for="message" class="sr-only">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        placeholder="your message..."
+        required
+        rows="4"
+      ></textarea>
+      <button type="submit" disabled={isSubmitting}>{status}</button>
+    </form>
   {/if}
 </main>
 

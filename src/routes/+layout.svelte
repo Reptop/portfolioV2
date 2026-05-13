@@ -25,15 +25,29 @@
 
 <svelte:head>
   <link rel="icon" href={favicon} />
-  <link rel="alternate" type="application/rss+xml" title="reptop blog" href="/rss.xml" />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="reptop blog"
+    href="/rss.xml"
+  />
   <title>reptop</title>
-  <meta name="description" content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear." />
+  <meta
+    name="description"
+    content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear."
+  />
   <meta property="og:title" content="reptop" />
-  <meta property="og:description" content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear." />
+  <meta
+    property="og:description"
+    content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear."
+  />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="reptop" />
-  <meta name="twitter:description" content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear." />
+  <meta
+    name="twitter:description"
+    content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear."
+  />
 </svelte:head>
 
 {#if $page.url.pathname !== "/"}
@@ -41,12 +55,42 @@
     <a href="/" class="logo">reptop</a>
 
     <div class="links" class:open={menuOpen}>
-      <a href="/about" aria-current={$page.url.pathname.startsWith('/about') ? 'page' : undefined}>about</a>
-      <a href="/projects" aria-current={$page.url.pathname.startsWith('/projects') ? 'page' : undefined}>projects</a>
-      <a href="/gear" aria-current={$page.url.pathname.startsWith('/gear') ? 'page' : undefined}>gear</a>
-      <a href="/blog" aria-current={$page.url.pathname.startsWith('/blog') ? 'page' : undefined}>blog</a>
-      <a href="/now" aria-current={$page.url.pathname.startsWith('/now') ? 'page' : undefined}>now</a>
-      <a href="/contact" aria-current={$page.url.pathname.startsWith('/contact') ? 'page' : undefined}>contact</a>
+      <a
+        href="/about"
+        aria-current={$page.url.pathname.startsWith("/about")
+          ? "page"
+          : undefined}>about</a
+      >
+      <a
+        href="/projects"
+        aria-current={$page.url.pathname.startsWith("/projects")
+          ? "page"
+          : undefined}>projects</a
+      >
+      <a
+        href="/gear"
+        aria-current={$page.url.pathname.startsWith("/gear")
+          ? "page"
+          : undefined}>gear</a
+      >
+      <a
+        href="/blog"
+        aria-current={$page.url.pathname.startsWith("/blog")
+          ? "page"
+          : undefined}>blog</a
+      >
+      <a
+        href="/now"
+        aria-current={$page.url.pathname.startsWith("/now")
+          ? "page"
+          : undefined}>now</a
+      >
+      <a
+        href="/contact"
+        aria-current={$page.url.pathname.startsWith("/contact")
+          ? "page"
+          : undefined}>contact</a
+      >
     </div>
 
     <button

@@ -4,7 +4,10 @@
 
 <svelte:head>
   <title>now — reptop</title>
-  <meta name="description" content="What Raed Kabir is currently working on, learning, and thinking about." />
+  <meta
+    name="description"
+    content="What Raed Kabir is currently working on, learning, and thinking about."
+  />
 </svelte:head>
 
 <main>
@@ -12,46 +15,51 @@
 
   <p class="meta" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
     Last updated May 2026 ·
-    <a href="https://nownownow.com/about" target="_blank" rel="noreferrer" class="what-link">
+    <a
+      href="https://nownownow.com/about"
+      target="_blank"
+      rel="noreferrer"
+      class="what-link"
+    >
       what is this?
     </a>
   </p>
 
   <div in:TerminalAnimation={{ delay: 240, duration: 300 }}>
-  <section class="block">
-    <h2>working on</h2>
-    <ul>
-      <li>finishing up my linear algebra research project</li>
-      <li>building out ML projects focused on computer vision</li>
-      <li>this portfolio</li>
-    </ul>
-  </section>
+    <section class="block">
+      <h2>working on</h2>
+      <ul>
+        <li>finishing up my linear algebra research project</li>
+        <li>building out ML projects focused on computer vision</li>
+        <li>this portfolio</li>
+      </ul>
+    </section>
 
-  <section class="block">
-    <h2>learning</h2>
-    <ul>
-      <li>transformer architectures and attention mechanisms</li>
-      <li>CUDA programming for GPU-accelerated ML</li>
-      <li>Rust</li>
-    </ul>
-  </section>
+    <section class="block">
+      <h2>learning</h2>
+      <ul>
+        <li>transformer architectures and attention mechanisms</li>
+        <li>CUDA programming for GPU-accelerated ML</li>
+        <li>Rust</li>
+      </ul>
+    </section>
 
-  <section class="block">
-    <h2>reading</h2>
-    <ul>
-      <li><em>The Art of Problem Solving</em> — Richard Rusczyk</li>
-      <li><em>Deep Learning</em> — Goodfellow, Bengio, Courville</li>
-    </ul>
-  </section>
+    <section class="block">
+      <h2>reading</h2>
+      <ul>
+        <li><em>The Art of Problem Solving</em> — Richard Rusczyk</li>
+        <li><em>Deep Learning</em> — Goodfellow, Bengio, Courville</li>
+      </ul>
+    </section>
 
-  <section class="block">
-    <h2>otherwise</h2>
-    <ul>
-      <li>TAing and tutoring at OSU</li>
-      <li>running Bedrock Linux on my daily driver</li>
-      <li>collecting Chiikawa plushies</li>
-    </ul>
-  </section>
+    <section class="block">
+      <h2>otherwise</h2>
+      <ul>
+        <li>TAing and tutoring at OSU</li>
+        <li>running Bedrock Linux on my daily driver</li>
+        <li>collecting Chiikawa plushies</li>
+      </ul>
+    </section>
   </div>
 </main>
 
@@ -77,7 +85,9 @@
     color: var(--txt-3);
     text-decoration: underline;
     text-underline-offset: 3px;
-    &:hover { color: var(--yellow); }
+    &:hover {
+      color: var(--yellow);
+    }
   }
 
   .block {

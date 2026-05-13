@@ -1,5 +1,5 @@
 <script>
-  import { page } from '$app/stores';
+  import { page } from "$app/stores";
 </script>
 
 <svelte:head>
@@ -8,7 +8,7 @@
 
 <main>
   <p class="status">{$page.status}</p>
-  <h1>{$page.status === 404 ? 'page not found' : 'something went wrong'}</h1>
+  <h1>{$page.status === 404 ? "page not found" : "something went wrong"}</h1>
   {#if $page.error?.message && $page.status !== 404}
     <p class="msg">{$page.error.message}</p>
   {/if}
@@ -57,7 +57,9 @@
     border: 2px solid var(--bg-3);
     background: var(--bg-2);
     padding: 0.5rem 1rem;
-    transition: border-color 140ms ease, color 140ms ease;
+    transition:
+      border-color 140ms ease,
+      color 140ms ease;
   }
 
   .home-link:hover {

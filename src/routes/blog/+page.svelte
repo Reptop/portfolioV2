@@ -17,7 +17,13 @@
   <header class="hero">
     <div class="title-row">
       <h1 in:TerminalAnimation={{ duration: 270 }}>blog</h1>
-      <a href="/rss.xml" class="rss-link" target="_blank" rel="noreferrer" aria-label="RSS feed">
+      <a
+        href="/rss.xml"
+        class="rss-link"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="RSS feed"
+      >
         rss
       </a>
     </div>

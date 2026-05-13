@@ -90,7 +90,10 @@
         <figure class="gallery-item">
           <button
             class="gallery-btn"
-            onclick={() => { lightboxIndex = index; lightboxOpen = true; }}
+            onclick={() => {
+              lightboxIndex = index;
+              lightboxOpen = true;
+            }}
             aria-label="View image {index + 1} fullscreen"
           >
             <img
@@ -370,7 +373,9 @@
     padding: 0.85rem 1rem;
     border: 2px solid var(--bg-3);
     background: var(--bg-2);
-    transition: border-color 140ms ease, filter 140ms ease;
+    transition:
+      border-color 140ms ease,
+      filter 140ms ease;
   }
 
   .page-link:hover {

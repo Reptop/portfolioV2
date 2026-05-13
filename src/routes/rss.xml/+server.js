@@ -40,16 +40,16 @@ export async function GET({ url }) {
     <language>en</language>
     <atom:link href="${origin}/rss.xml" rel="self" type="application/rss+xml" />
 ${posts
-  .map(
-    (p) => `    <item>
+      .map(
+        (p) => `    <item>
       <title>${escapeXml(p.title)}</title>
       <link>${origin}/blog/${p.slug}</link>
       <guid isPermaLink="true">${origin}/blog/${p.slug}</guid>
       ${p.subtitle ? `<description>${escapeXml(p.subtitle)}</description>` : ''}
       <pubDate>${new Date(p.date).toUTCString()}</pubDate>
     </item>`
-  )
-  .join('\n')}
+      )
+      .join('\n')}
   </channel>
 </rss>`;
 

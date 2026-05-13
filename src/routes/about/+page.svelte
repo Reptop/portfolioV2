@@ -113,11 +113,17 @@
         <ul class="repo-list">
           {#each data.activity as repo}
             <li>
-              <a href={repo.url} target="_blank" rel="noreferrer" class="repo-link">
+              <a
+                href={repo.url}
+                target="_blank"
+                rel="noreferrer"
+                class="repo-link"
+              >
                 {repo.name}
               </a>
               <span class="repo-meta">
-                {#if repo.language}<span class="lang">{repo.language}</span>{/if}
+                {#if repo.language}<span class="lang">{repo.language}</span
+                  >{/if}
                 <span class="when">{repo.when}</span>
               </span>
             </li>

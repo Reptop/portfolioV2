@@ -20,13 +20,13 @@ export async function load({ setHeaders }: { setHeaders: (h: Record<string, stri
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
         let when: string;
-        if (diffDays === 0)       when = 'today';
-        else if (diffDays === 1)  when = 'yesterday';
-        else if (diffDays < 7)    when = `${diffDays} days ago`;
-        else if (diffDays < 14)   when = '1 week ago';
-        else if (diffDays < 30)   when = `${Math.floor(diffDays / 7)} weeks ago`;
-        else if (diffDays < 60)   when = '1 month ago';
-        else                      when = `${Math.floor(diffDays / 30)} months ago`;
+        if (diffDays === 0) when = 'today';
+        else if (diffDays === 1) when = 'yesterday';
+        else if (diffDays < 7) when = `${diffDays} days ago`;
+        else if (diffDays < 14) when = '1 week ago';
+        else if (diffDays < 30) when = `${Math.floor(diffDays / 7)} weeks ago`;
+        else if (diffDays < 60) when = '1 month ago';
+        else when = `${Math.floor(diffDays / 30)} months ago`;
 
         return {
           name: r.name as string,
@@ -39,7 +39,9 @@ export async function load({ setHeaders }: { setHeaders: (h: Record<string, stri
       .slice(0, 5);
 
     return { activity };
-  } catch {
+  }
+
+  catch {
     return { activity: null };
   }
 }

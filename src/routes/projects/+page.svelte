@@ -3,7 +3,10 @@
   import TerminalAnimation from "$lib/components/animation";
 
   const formatDate = (date: string) =>
-    new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" }).format(new Date(date));
+    new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      year: "numeric",
+    }).format(new Date(date));
 </script>
 
 <main>
@@ -22,8 +25,8 @@
             <img
               src={project.cover}
               alt={project.title || project.slug}
-              loading={project === data.projects[0] ? 'eager' : 'lazy'}
-              fetchpriority={project === data.projects[0] ? 'high' : 'auto'}
+              loading={project === data.projects[0] ? "eager" : "lazy"}
+              fetchpriority={project === data.projects[0] ? "high" : "auto"}
             />
           {:else}
             <div class="media-fallback">No cover image</div>
@@ -34,7 +37,7 @@
           <h2>{project.title || project.slug}</h2>
           {#if project.stack}
             <ul class="stack">
-              {#each project.stack.split(',') as tech}
+              {#each project.stack.split(",") as tech}
                 <li>{tech.trim()}</li>
               {/each}
             </ul>
@@ -142,7 +145,6 @@
     font-size: 1.3rem;
     color: var(--txt);
   }
-
 
   .stack {
     list-style: none;
