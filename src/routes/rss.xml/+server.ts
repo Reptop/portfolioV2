@@ -1,7 +1,8 @@
+import type { RequestHandler } from './$types';
+
 export const prerender = true;
 
-/** @param {string} str */
-function escapeXml(str) {
+function escapeXml(str: string): string {
   return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -10,25 +11,23 @@ function escapeXml(str) {
     .replace(/'/g, '&apos;');
 }
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET({ url }) {
+export const GET: RequestHandler = async ({ url }) => {
   const origin = url.origin;
 
-  /** @type {Record<string, { metadata?: Record<string, any> }>} */
-  const modules = import.meta.glob('$lib/posts/*.md', { eager: true });
+  const modules = import.meta.glob<{ metadata?: Record<string, unknown> }>('$lib/posts/*.md', { eager: true });
 
   const posts = Object.entries(modules)
     .map(([path, mod]) => {
       const slug = path.split('/').pop()?.replace('.md', '') ?? '';
-      const meta = mod.metadata ?? {};
+      const meta = (mod.metadata ?? {}) as Record<string, unknown>;
       return {
         slug,
-        title: meta.title ?? slug,
-        subtitle: meta.subtitle ?? '',
-        date: meta.date ?? null,
+        title: (meta.title as string) ?? slug,
+        subtitle: (meta.subtitle as string) ?? '',
+        date: (meta.date as string) ?? null,
       };
     })
-    .filter((p) => p.date)
+    .filter((p): p is typeof p & { date: string } => p.date !== null)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -59,4 +58,4 @@ ${posts
       'Cache-Control': 'max-age=0, s-maxage=3600',
     },
   });
-}
+};

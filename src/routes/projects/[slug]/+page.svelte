@@ -1,5 +1,6 @@
-<script>
-  export let data;
+<script lang="ts">
+  import type { PageData } from './$types';
+  export let data: PageData;
   import { copyCode } from "$lib/actions/copyCode";
   import Lightbox from "$lib/components/Lightbox.svelte";
 

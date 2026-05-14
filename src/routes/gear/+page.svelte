@@ -1,6 +1,7 @@
 <script lang="ts">
+  import type { PageData } from './$types';
   import TerminalAnimation from "$lib/components/animation";
-  export let data;
+  export let data: PageData;
 </script>
 
 <main>

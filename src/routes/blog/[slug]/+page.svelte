@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let data;
+  import type { PageData } from './$types';
+  export let data: PageData;
   import { copyCode } from "$lib/actions/copyCode";
 
   const postModules = import.meta.glob("$lib/posts/*.md");
