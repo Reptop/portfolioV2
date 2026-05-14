@@ -11,6 +11,7 @@
 
   let current = $state(startIndex);
   let dialogEl: HTMLDialogElement | undefined = $state();
+  let lbEl: HTMLDivElement | undefined = $state();
 
   $effect(() => {
     dialogEl?.showModal();
@@ -39,7 +40,7 @@
   onclose={onclose}
   onclick={(e) => { if (e.target === dialogEl) onclose(); }}
 >
-  <div class="lb">
+  <div class="lb" bind:this={lbEl} onclick={(e) => { if (e.target === lbEl) onclose(); }}>
     <img src={images[current]} alt="Gallery image {current + 1} of {images.length}" />
 
     {#if images.length > 1}

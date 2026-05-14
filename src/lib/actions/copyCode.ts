@@ -1,8 +1,11 @@
 export function copyCode(node: HTMLElement) {
+  const attached = new WeakSet<HTMLPreElement>();
   const cleanups: (() => void)[] = [];
 
-  node.querySelectorAll<HTMLPreElement>('pre').forEach((pre) => {
-    // Attach to the figure wrapper if present, otherwise the pre itself
+  function attachButton(pre: HTMLPreElement) {
+    if (attached.has(pre)) return;
+    attached.add(pre);
+
     const container =
       (pre.closest('[data-rehype-pretty-code-figure]') as HTMLElement) ?? pre;
     container.style.position = 'relative';
@@ -24,10 +27,18 @@ export function copyCode(node: HTMLElement) {
 
     btn.addEventListener('click', onClick);
     cleanups.push(() => btn.removeEventListener('click', onClick));
+  }
+
+  node.querySelectorAll<HTMLPreElement>('pre').forEach(attachButton);
+
+  const observer = new MutationObserver(() => {
+    node.querySelectorAll<HTMLPreElement>('pre').forEach(attachButton);
   });
+  observer.observe(node, { childList: true, subtree: true });
 
   return {
     destroy() {
+      observer.disconnect();
       cleanups.forEach((fn) => fn());
     },
   };

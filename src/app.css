@@ -63,17 +63,18 @@
   font-family: 'Space Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.04em;
-  color: var(--txt-3);
+  color: var(--txt-2);
   background: var(--bg-3);
-  border: 1px solid color-mix(in srgb, var(--txt-3), transparent 60%);
+  border: 1px solid color-mix(in srgb, var(--txt-2), transparent 50%);
   cursor: pointer;
-  transition: color 140ms ease, background 140ms ease;
+  transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
   z-index: 1;
 }
 
 .code-copy-btn:hover {
-  color: var(--txt);
-  background: color-mix(in srgb, var(--bg-3), var(--bg) 30%);
+  color: var(--yellow);
+  border-color: color-mix(in srgb, var(--yellow), transparent 50%);
+  background: var(--bg-3);
 }
 
 html {
