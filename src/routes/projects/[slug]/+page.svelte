@@ -8,6 +8,11 @@
   /** @type {Promise<any>} */
   const projectPromise = projectModules[projectPath]();
 
+  const lightboxImages = [
+    ...(data.cover ? [data.cover] : []),
+    ...data.gallery,
+  ];
+
   let lightboxOpen = false;
   let lightboxIndex = 0;
 </script>
@@ -80,7 +85,13 @@
 
   {#if data.cover}
     <div class="cover-wrap">
-      <img class="cover" src={data.cover} alt={data.title || data.slug} />
+      <button
+        class="cover-btn"
+        onclick={() => { lightboxIndex = 0; lightboxOpen = true; }}
+        aria-label="View cover image fullscreen"
+      >
+        <img class="cover" src={data.cover} alt={data.title || data.slug} />
+      </button>
     </div>
   {/if}
 
@@ -91,7 +102,7 @@
           <button
             class="gallery-btn"
             onclick={() => {
-              lightboxIndex = index;
+              lightboxIndex = (data.cover ? 1 : 0) + index;
               lightboxOpen = true;
             }}
             aria-label="View image {index + 1} fullscreen"
@@ -107,9 +118,9 @@
     </section>
   {/if}
 
-  {#if lightboxOpen}
+  {#if lightboxOpen && lightboxImages.length}
     <Lightbox
-      images={data.gallery}
+      images={lightboxImages}
       startIndex={lightboxIndex}
       onclose={() => (lightboxOpen = false)}
     />
@@ -253,12 +264,26 @@
     overflow: hidden;
   }
 
+  .cover-btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: zoom-in;
+  }
+
+  .cover-btn:hover .cover {
+    filter: brightness(1.08);
+  }
+
   .cover {
     width: 100%;
     height: clamp(14rem, 42vw, 25rem);
     display: block;
     object-fit: cover;
     object-position: center;
+    transition: filter 140ms ease;
   }
 
   .gallery {
