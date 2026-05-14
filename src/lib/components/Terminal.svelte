@@ -33,7 +33,7 @@
           '  cd <page>         navigate to page',
           '  cat <file>        read a file',
           '  whoami            about me',
-          '  neofetch          system info',
+          '  fastfetch          system info',
           '  clear             clear output',
           '  exit              close terminal',
         ];
@@ -77,14 +77,19 @@
       case 'whoami':
         return ['Raed Kabir (reptop) — CS + Math student, ML enthusiast'];
 
-      case 'neofetch':
+      case 'fastfetch':
         return [
-          "  ____            _              ",
-          " |  _ \\ ___ _ __ | |_ ___  _ __  ",
-          " | |_) / _ \\ '_ \\| __/ _ \\| '_ \\ ",
-          " |  _ <  __/ |_) | || (_) | |_) |",
-          " |_| \\_\\___| .__/ \\__\\___/| .__/ ",
-          "           |_|            |_|    ",
+          '   \\\\\\\\\\\\\\\\\\\\\\\\',
+          '    \\\\\\      \\\\\\',
+          '     \\\\\\      \\\\\\',
+          '      \\\\\\      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
+          '       \\\\\\                    \\\\\\',
+          '        \\\\\\                    \\\\\\',
+          '         \\\\\\        ______      \\\\\\',
+          '          \\\\\\                   ///',
+          '           \\\\\\                 ///',
+          '            \\\\\\               ///',
+          '             \\\\\\////////////////',
           '',
           'reptop@portfolio',
           '────────────────',
