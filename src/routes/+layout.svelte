@@ -1,6 +1,6 @@
 <script lang="ts">
   import favicon from "$lib/assets/favicon.svg";
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
   import "../app.css";
   import { inject } from "@vercel/analytics";
   import CommandPalette from "$lib/components/CommandPalette.svelte";
@@ -18,7 +18,7 @@
 
   // Close menu on navigation
   $effect(() => {
-    $page.url.pathname;
+    page.url.pathname;
     menuOpen = false;
   });
 </script>
@@ -50,44 +50,44 @@
   />
 </svelte:head>
 
-{#if $page.url.pathname !== "/"}
+{#if page.url.pathname !== "/"}
   <nav class="nav">
     <a href="/" class="logo">reptop</a>
 
     <div class="links" class:open={menuOpen}>
       <a
         href="/about"
-        aria-current={$page.url.pathname.startsWith("/about")
+        aria-current={page.url.pathname.startsWith("/about")
           ? "page"
           : undefined}>about</a
       >
       <a
         href="/projects"
-        aria-current={$page.url.pathname.startsWith("/projects")
+        aria-current={page.url.pathname.startsWith("/projects")
           ? "page"
           : undefined}>projects</a
       >
       <a
         href="/gear"
-        aria-current={$page.url.pathname.startsWith("/gear")
+        aria-current={page.url.pathname.startsWith("/gear")
           ? "page"
           : undefined}>gear</a
       >
       <a
         href="/blog"
-        aria-current={$page.url.pathname.startsWith("/blog")
+        aria-current={page.url.pathname.startsWith("/blog")
           ? "page"
           : undefined}>blog</a
       >
       <a
         href="/now"
-        aria-current={$page.url.pathname.startsWith("/now")
+        aria-current={page.url.pathname.startsWith("/now")
           ? "page"
           : undefined}>now</a
       >
       <a
         href="/contact"
-        aria-current={$page.url.pathname.startsWith("/contact")
+        aria-current={page.url.pathname.startsWith("/contact")
           ? "page"
           : undefined}>contact</a
       >

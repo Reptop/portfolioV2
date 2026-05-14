@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+  import { page } from "$app/state";
 </script>
 
 <svelte:head>
-  <title>{$page.status} — reptop</title>
+  <title>{page.status} — reptop</title>
 </svelte:head>
 
 <main>
-  <p class="status">{$page.status}</p>
-  <h1>{$page.status === 404 ? "page not found" : "something went wrong"}</h1>
-  {#if $page.error?.message && $page.status !== 404}
-    <p class="msg">{$page.error.message}</p>
+  <p class="status">{page.status}</p>
+  <h1>{page.status === 404 ? "page not found" : "something went wrong"}</h1>
+  {#if page.error?.message && page.status !== 404}
+    <p class="msg">{page.error.message}</p>
   {/if}
   <a href="/" class="home-link"><span class="arrow">←</span> back home</a>
 </main>
