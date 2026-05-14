@@ -1,12 +1,15 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
+  import { goto } from "$app/navigation";
 
   type Line = { cmd: string; output: string[] };
 
   let open = $state(false);
-  let inputValue = $state('');
+  let inputValue = $state("");
   let lines = $state<Line[]>([
-    { cmd: '', output: ["welcome to reptop's terminal — type 'help' for commands"] },
+    {
+      cmd: "",
+      output: ["welcome to reptop's terminal — type 'help' for commands"],
+    },
   ]);
   let cmdHistory = $state<string[]>([]);
   let historyIdx = $state(-1);
@@ -15,102 +18,115 @@
   let outputEl: HTMLElement | undefined = $state();
 
   const pages: Record<string, string> = {
-    '~': '/', home: '/', about: '/about', projects: '/projects',
-    blog: '/blog', gear: '/gear', contact: '/contact', now: '/now',
+    "~": "/",
+    home: "/",
+    about: "/about",
+    projects: "/projects",
+    blog: "/blog",
+    gear: "/gear",
+    contact: "/contact",
+    now: "/now",
   };
 
   function process(raw: string): string[] {
     const parts = raw.trim().split(/\s+/);
-    const cmd = parts[0]?.toLowerCase() ?? '';
-    const arg = parts[1] ?? '';
+    const cmd = parts[0]?.toLowerCase() ?? "";
+    const arg = parts[1] ?? "";
 
     switch (cmd) {
-      case 'help':
+      case "help":
         return [
-          'commands:',
-          '  help              show this message',
-          '  ls                list pages',
-          '  cd <page>         navigate to page',
-          '  cat <file>        read a file',
-          '  whoami            about me',
-          '  fastfetch          system info',
-          '  clear             clear output',
-          '  exit              close terminal',
+          "commands:",
+          "  help              show this message",
+          "  ls                list pages",
+          "  cd <page>         navigate to page",
+          "  cat <file>        read a file",
+          "  whoami            about me",
+          "  fastfetch          system info",
+          "  clear             clear output",
+          "  exit              close terminal",
         ];
 
-      case 'ls':
-        return ['about    blog    contact    gear    now    projects'];
+      case "ls":
+        return ["about    blog    contact    gear    now    projects"];
 
-      case 'cd': {
-        const dest = arg.replace(/^\//, '');
+      case "cd": {
+        const dest = arg.replace(/^\//, "");
         const href = pages[dest];
-        if (!arg) return ['usage: cd <page>'];
+        if (!arg) return ["usage: cd <page>"];
         if (!href) return [`cd: ${arg}: no such page — try ls`];
-        setTimeout(() => { open = false; goto(href); }, 250);
+        setTimeout(() => {
+          open = false;
+          goto(href);
+        }, 250);
         return [`→ ${href}`];
       }
 
-      case 'cat': {
-        if (!arg) return ['usage: cat <file>'];
-        if (arg === 'about.txt' || arg === 'about') {
+      case "cat": {
+        if (!arg) return ["usage: cat <file>"];
+        if (arg === "about.txt" || arg === "about") {
           return [
-            'name:    Raed Kabir',
-            'handle:  reptop',
-            'school:  Oregon State University',
-            'major:   Computer Science + Mathematics',
-            'focus:   machine learning, computer vision, NLP',
+            "name:    Raed Kabir",
+            "handle:  reptop",
+            "school:  Oregon State University",
+            "major:   Computer Science + Mathematics",
+            "focus:   machine learning, computer vision, NLP",
           ];
         }
-        if (arg === 'contact.txt' || arg === 'contact') {
+        if (arg === "contact.txt" || arg === "contact") {
           return [
-            'email:   raed.kabir03@gmail.com',
-            'discord: Reptop',
-            'github:  github.com/Reptop',
+            "email:   raed.kabir03@gmail.com",
+            "discord: Reptop",
+            "github:  github.com/Reptop",
           ];
         }
-        if (arg === 'stack.txt' || arg === 'stack') {
-          return ['SvelteKit  ·  Node/Express  ·  Firebase  ·  SQL  ·  C++  ·  OpenGL'];
+        if (arg === "stack.txt" || arg === "stack") {
+          return [
+            "SvelteKit  ·  Node/Express  ·  Firebase  ·  SQL  ·  C++  ·  OpenGL",
+          ];
         }
-        return [`cat: ${arg}: no such file — try about.txt, contact.txt, stack.txt`];
+        return [
+          `cat: ${arg}: no such file — try about.txt, contact.txt, stack.txt`,
+        ];
       }
 
-      case 'whoami':
-        return ['Raed Kabir (reptop) — CS + Math student, ML enthusiast'];
+      case "whoami":
+        return ["Raed Kabir (reptop) — CS + Math student, ML enthusiast"];
 
-      case 'fastfetch':
+      case "fastfetch":
         return [
-          '   \\\\\\\\\\\\\\\\\\\\\\\\',
-          '    \\\\\\      \\\\\\',
-          '     \\\\\\      \\\\\\',
-          '      \\\\\\      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\',
-          '       \\\\\\                    \\\\\\',
-          '        \\\\\\                    \\\\\\',
-          '         \\\\\\        ______      \\\\\\',
-          '          \\\\\\                   ///',
-          '           \\\\\\                 ///',
-          '            \\\\\\               ///',
-          '             \\\\\\////////////////',
-          '',
-          'reptop@portfolio',
-          '────────────────',
-          'os:     bedrock linux',
-          'shell:  zsh',
-          'editor: nvim',
-          'stack:  sveltekit + vercel',
-          'lang:   typescript · c++ · python',
-          'focus:  ml · cv · nlp',
+          "   \\\\\\\\\\\\\\\\\\\\\\\\",
+          "    \\\\\\      \\\\\\",
+          "     \\\\\\      \\\\\\",
+          "      \\\\\\      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\",
+          "       \\\\\\                    \\\\\\",
+          "        \\\\\\                    \\\\\\",
+          "         \\\\\\        ______      \\\\\\",
+          "          \\\\\\                   ///",
+          "           \\\\\\                 ///",
+          "            \\\\\\               ///",
+          "             \\\\\\////////////////",
+          "",
+          "reptop@portfolio",
+          "────────────────",
+          "os:     bedrock linux",
+          "shell:  zsh",
+          "editor: nvim",
+          "stack:  sveltekit + vercel",
+          "lang:   typescript · c++ · python",
+          "focus:  ml · cv · nlp",
         ];
 
-      case 'clear':
+      case "clear":
         lines = [];
         return [];
 
-      case 'exit':
-      case 'quit':
+      case "exit":
+      case "quit":
         open = false;
         return [];
 
-      case '':
+      case "":
         return [];
 
       default:
@@ -120,33 +136,33 @@
 
   function submit() {
     const cmd = inputValue.trim();
-    inputValue = '';
+    inputValue = "";
     historyIdx = -1;
 
     const output = process(cmd);
 
-    if (cmd && cmd !== 'clear') {
+    if (cmd && cmd !== "clear") {
       cmdHistory = [cmd, ...cmdHistory].slice(0, 50);
     }
-    if (cmd !== 'clear') {
+    if (cmd !== "clear") {
       lines = [...lines, { cmd, output }];
     }
   }
 
   function handleKeydown(e: KeyboardEvent) {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       submit();
-    } else if (e.key === 'ArrowUp') {
+    } else if (e.key === "ArrowUp") {
       e.preventDefault();
       const next = Math.min(historyIdx + 1, cmdHistory.length - 1);
       historyIdx = next;
-      inputValue = cmdHistory[next] ?? '';
-    } else if (e.key === 'ArrowDown') {
+      inputValue = cmdHistory[next] ?? "";
+    } else if (e.key === "ArrowDown") {
       e.preventDefault();
       const next = historyIdx - 1;
       historyIdx = next;
-      inputValue = next < 0 ? '' : (cmdHistory[next] ?? '');
-    } else if (e.key === 'Escape') {
+      inputValue = next < 0 ? "" : (cmdHistory[next] ?? "");
+    } else if (e.key === "Escape") {
       open = false;
     }
   }
@@ -154,14 +170,14 @@
   // Toggle on backtick, skip if an input/textarea is focused
   $effect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key !== '`') return;
+      if (e.key !== "`") return;
       const tag = (document.activeElement as HTMLElement)?.tagName;
-      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
       e.preventDefault();
       open = !open;
     };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   });
 
   $effect(() => {
@@ -178,7 +194,8 @@
   <div class="titlebar">
     <span class="title">reptop@portfolio:~$</span>
     <span class="hint">` to toggle</span>
-    <button onclick={() => (open = false)} aria-label="Close terminal">✕</button>
+    <button onclick={() => (open = false)} aria-label="Close terminal">✕</button
+    >
   </div>
 
   <div class="output" bind:this={outputEl}>
@@ -217,7 +234,7 @@
     border-top: 2px solid var(--green);
     display: flex;
     flex-direction: column;
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
     font-size: 0.85rem;
     z-index: 200;
     transform: translateY(100%);

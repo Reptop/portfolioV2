@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
-  import { loadCommands, type Command } from '$lib/palette-data';
+  import { goto } from "$app/navigation";
+  import { loadCommands, type Command } from "$lib/palette-data";
 
   let open = $state(false);
-  let query = $state('');
+  let query = $state("");
   let selectedIndex = $state(0);
   let commands = $state<Command[]>([]);
   let commandsLoaded = false;
@@ -13,33 +13,41 @@
 
   const filtered: Command[] = $derived(
     query.trim()
-      ? commands.filter((c) => c.label.toLowerCase().includes(query.trim().toLowerCase()))
-      : commands
+      ? commands.filter((c) =>
+          c.label.toLowerCase().includes(query.trim().toLowerCase()),
+        )
+      : commands,
   );
 
   const groups = $derived(
     query.trim()
       ? [{ label: null, items: filtered }]
       : [
-          { label: 'pages',    items: commands.filter((c) => c.type === 'page')    },
-          { label: 'projects', items: commands.filter((c) => c.type === 'project') },
-          { label: 'posts',    items: commands.filter((c) => c.type === 'post')    },
-        ].filter((g) => g.items.length > 0)
+          { label: "pages", items: commands.filter((c) => c.type === "page") },
+          {
+            label: "projects",
+            items: commands.filter((c) => c.type === "project"),
+          },
+          { label: "posts", items: commands.filter((c) => c.type === "post") },
+        ].filter((g) => g.items.length > 0),
   );
 
   // Reset selection when results change
-  $effect(() => { void filtered; selectedIndex = 0; });
+  $effect(() => {
+    void filtered;
+    selectedIndex = 0;
+  });
 
   // Keep selected item in view
   $effect(() => {
     listEl
       ?.querySelector<HTMLElement>(`[data-idx="${selectedIndex}"]`)
-      ?.scrollIntoView({ block: 'nearest' });
+      ?.scrollIntoView({ block: "nearest" });
   });
 
   async function openPalette() {
     open = true;
-    query = '';
+    query = "";
     selectedIndex = 0;
     dialogEl?.showModal();
     setTimeout(() => inputEl?.focus(), 0);
@@ -51,7 +59,7 @@
 
   function closePalette() {
     open = false;
-    query = '';
+    query = "";
     dialogEl?.close();
   }
 
@@ -63,23 +71,23 @@
   // Global Cmd+K / Ctrl+K
   $effect(() => {
     const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         open ? closePalette() : openPalette();
       }
     };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   });
 
   function handleKeydown(e: KeyboardEvent) {
-    if (e.key === 'ArrowDown') {
+    if (e.key === "ArrowDown") {
       e.preventDefault();
       selectedIndex = Math.min(selectedIndex + 1, filtered.length - 1);
-    } else if (e.key === 'ArrowUp') {
+    } else if (e.key === "ArrowUp") {
       e.preventDefault();
       selectedIndex = Math.max(selectedIndex - 1, 0);
-    } else if (e.key === 'Enter' && filtered[selectedIndex]) {
+    } else if (e.key === "Enter" && filtered[selectedIndex]) {
       navigate(filtered[selectedIndex]);
     }
   }
@@ -87,8 +95,13 @@
 
 <dialog
   bind:this={dialogEl}
-  onclose={() => { open = false; query = ''; }}
-  onclick={(e) => { if (e.target === dialogEl) closePalette(); }}
+  onclose={() => {
+    open = false;
+    query = "";
+  }}
+  onclick={(e) => {
+    if (e.target === dialogEl) closePalette();
+  }}
 >
   <div class="palette">
     <div class="search-bar">
@@ -119,7 +132,11 @@
               onmouseenter={() => (selectedIndex = idx)}
             >
               <span class="icon">
-                {cmd.type === 'page' ? '~/' : cmd.type === 'project' ? '◆' : '✦'}
+                {cmd.type === "page"
+                  ? "~/"
+                  : cmd.type === "project"
+                    ? "◆"
+                    : "✦"}
               </span>
               {cmd.label}
             </button>
