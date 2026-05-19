@@ -1,7 +1,8 @@
+import type { RequestHandler } from './$types';
+
 export const prerender = true;
 
-/** @type {import('@sveltejs/kit').RequestHandler} */
-export async function GET({ url }) {
+export const GET: RequestHandler = async ({ url }) => {
   const origin = url.origin;
 
   const projectModules = import.meta.glob('$lib/projects/*.md', { eager: true });
@@ -29,4 +30,4 @@ ${postSlugs.map((slug) => `  <url><loc>${origin}/blog/${slug}</loc></url>`).join
       'Cache-Control': 'max-age=0, s-maxage=3600',
     },
   });
-}
+};

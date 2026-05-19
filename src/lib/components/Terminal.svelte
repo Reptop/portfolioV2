@@ -91,7 +91,7 @@
       }
 
       case "whoami":
-        return ["Raed Kabir (reptop) — CS + Math student, ML enthusiast"];
+        return ["Raed Kabir (reptop) — CS + Math student, cat enthusiast"];
 
       case "fastfetch":
         return [

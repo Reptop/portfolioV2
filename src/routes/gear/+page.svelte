@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PageData } from './$types';
+  import type { PageData } from "./$types";
   import TerminalAnimation from "$lib/components/animation";
   export let data: PageData;
 </script>
@@ -34,9 +34,6 @@
         <div class="card-body">
           <div class="title-row">
             <h2>{gear.title || gear.slug}</h2>
-            {#if gear.status}
-              <span class="status">{gear.status}</span>
-            {/if}
           </div>
 
           {#if gear.summary}

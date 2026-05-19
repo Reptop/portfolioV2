@@ -6,8 +6,7 @@
   const postModules = import.meta.glob("$lib/posts/*.md");
   const postPath = `/src/lib/posts/${data.slug}.md`;
 
-  /** @type {Promise<any>} */
-  const postPromise = postModules[postPath]();
+  const postPromise = postModules[postPath]() as Promise<{ default: unknown }>;
 </script>
 
 <svelte:head>

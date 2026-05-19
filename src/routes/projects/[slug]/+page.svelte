@@ -6,8 +6,7 @@
 
   const projectModules = import.meta.glob("$lib/projects/*.md");
   const projectPath = `/src/lib/projects/${data.slug}.md`;
-  /** @type {Promise<any>} */
-  const projectPromise = projectModules[projectPath]();
+  const projectPromise = projectModules[projectPath]() as Promise<{ default: unknown }>;
 
   const lightboxImages = [
     ...(data.cover ? [data.cover] : []),

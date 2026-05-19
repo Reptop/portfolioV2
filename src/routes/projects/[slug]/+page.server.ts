@@ -13,7 +13,8 @@ export const load: PageServerLoad = async ({ params }) => {
 
   const match = modules[`/src/lib/projects/${slug}.md`];
 
-  if (!match) throw error(404, 'Project not found');
+  if (!match)
+    throw error(404, 'Project not found');
 
   const metadata = (match.metadata ?? {}) as Record<string, unknown>;
   const date = (metadata.date as string) ?? null;

@@ -1,4 +1,3 @@
-/** @type {import('./$types').PageServerLoad} */
 export async function load({ setHeaders }: { setHeaders: (h: Record<string, string>) => void }) {
   setHeaders({ 'cache-control': 'max-age=0, s-maxage=3600' });
 
