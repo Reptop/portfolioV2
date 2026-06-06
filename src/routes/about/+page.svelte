@@ -4,6 +4,10 @@
   export let data;
 </script>
 
+<svelte:head>
+  <title>about — reptop</title>
+</svelte:head>
+
 <main>
   <h1 in:TerminalAnimation={{ duration: 270 }}>about me</h1>
 

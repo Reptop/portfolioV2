@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PageData } from './$types';
+  import type { PageData } from "./$types";
   export let data: PageData;
   import TerminalAnimation from "$lib/components/animation";
 
@@ -13,6 +13,10 @@
     }).format(new Date(date));
   };
 </script>
+
+<svelte:head>
+  <title>blog — reptop</title>
+</svelte:head>
 
 <section class="blog-index">
   <header class="hero">

@@ -7,6 +7,10 @@
   let modelLoaded = $state(false);
 </script>
 
+<svelte:head>
+  <title>reptop</title>
+</svelte:head>
+
 <main>
   <div class="bg" style="background-image: url({BackgroundImage});"></div>
   <div class="wrap">

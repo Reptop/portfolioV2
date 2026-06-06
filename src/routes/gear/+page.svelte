@@ -4,6 +4,10 @@
   export let data: PageData;
 </script>
 
+<svelte:head>
+  <title>gear — reptop</title>
+</svelte:head>
+
 <main>
   <h1 in:TerminalAnimation={{ duration: 270 }}>
     gear <span class="count">({data.gear.length})</span>

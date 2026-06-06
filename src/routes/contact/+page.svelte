@@ -1,6 +1,5 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
-  import { fade } from "svelte/transition";
   import TerminalAnimation from "$lib/components/animation";
 
   let status = $state("submit ->");
@@ -50,6 +49,10 @@
     setTimeout(() => (discordCopied = false), 1000);
   };
 </script>
+
+<svelte:head>
+  <title>contact — reptop</title>
+</svelte:head>
 
 <main>
   <h1 in:TerminalAnimation={{ duration: 240 }}>contact info</h1>

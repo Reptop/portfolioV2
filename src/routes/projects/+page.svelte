@@ -10,6 +10,10 @@
     }).format(new Date(date));
 </script>
 
+<svelte:head>
+  <title>projects — reptop</title>
+</svelte:head>
+
 <main>
   <h1 in:TerminalAnimation={{ duration: 270 }}>
     projects <span class="count">({data.projects.length})</span>
