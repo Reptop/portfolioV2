@@ -16,6 +16,12 @@
 
 <svelte:head>
   <title>blog — reptop</title>
+  <meta name="description" content="Raed Kabir's blog — ML, math, and programming." />
+  <meta property="og:title" content="blog — reptop" />
+  <meta
+    property="og:description"
+    content="Raed Kabir's blog — ML, math, and programming."
+  />
 </svelte:head>
 
 <section class="blog-index">

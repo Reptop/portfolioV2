@@ -17,6 +17,7 @@ export const load: PageServerLoad = async () => {
   const rawModules = import.meta.glob<string>('$lib/posts/*.md', { eager: true, query: '?raw', import: 'default' });
 
   const posts = Object.entries(modules)
+    .filter(([, module]) => module.metadata?.draft !== true)
     .map(([path, module]) => {
       const fileName = path.split('/').pop();
       const slug = (fileName ?? '').replace(/\.md$/, '');

@@ -1,20 +1,23 @@
 <script lang="ts">
   import type { PageData } from './$types';
-  export let data: PageData;
+  import type { Component } from "svelte";
   import { copyCode } from "$lib/actions/copyCode";
   import Lightbox from "$lib/components/Lightbox.svelte";
 
-  const projectModules = import.meta.glob("$lib/projects/*.md");
-  const projectPath = `/src/lib/projects/${data.slug}.md`;
-  const projectPromise = projectModules[projectPath]() as Promise<{ default: unknown }>;
+  let { data }: { data: PageData } = $props();
 
-  const lightboxImages = [
+  const projectModules = import.meta.glob("$lib/projects/*.md");
+  const projectPromise = $derived(
+    projectModules[`/src/lib/projects/${data.slug}.md`]() as Promise<{ default: Component }>
+  );
+
+  const lightboxImages = $derived([
     ...(data.cover ? [data.cover] : []),
     ...data.gallery,
-  ];
+  ]);
 
-  let lightboxOpen = false;
-  let lightboxIndex = 0;
+  let lightboxOpen = $state(false);
+  let lightboxIndex = $state(0);
 </script>
 
 <svelte:head>
@@ -128,7 +131,8 @@
 
   <article class="content" use:copyCode>
     {#await projectPromise then project}
-      <svelte:component this={project.default} />
+      {@const Project = project.default}
+      <Project />
     {/await}
   </article>
 

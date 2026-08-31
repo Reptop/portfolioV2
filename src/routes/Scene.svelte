@@ -1,18 +1,14 @@
 <script lang="ts">
   import { T, useTask } from "@threlte/core";
-  import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
   import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
-  import { useLoader } from "@threlte/core";
-  import { useGltfAnimations } from "@threlte/extras";
+  import { useGltf, useGltfAnimations } from "@threlte/extras";
   import { base } from "$app/paths";
   import type { Object3D } from "three";
 
   let { onloaded }: { onloaded?: () => void } = $props();
 
   const url = `${base}/mega_delphox_za/scene.slim.glb`;
-  const gltf = useLoader(GLTFLoader, {
-    extend: (loader) => loader.setMeshoptDecoder(MeshoptDecoder),
-  }).load(url);
+  const gltf = useGltf(url, { meshoptDecoder: MeshoptDecoder });
   const { actions } = useGltfAnimations(gltf);
 
   // Root scene node — set once the model loads

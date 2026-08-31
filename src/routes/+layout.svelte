@@ -31,23 +31,14 @@
     title="reptop blog"
     href="/rss.xml"
   />
-  <title>reptop</title>
-  <meta
-    name="description"
-    content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear."
-  />
-  <meta property="og:title" content="reptop" />
-  <meta
-    property="og:description"
-    content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear."
-  />
+  <!-- Page-specific tags (title, description, og:title, ...) live in each
+       page's own <svelte:head>: heads are concatenated, not merged, and
+       scrapers read the first occurrence — so the layout must not set them. -->
+  <meta property="og:site_name" content="reptop" />
   <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="reptop" />
-  <meta
-    name="twitter:description"
-    content="Raed Kabir — CS + Math student at Oregon State. Projects, writing, and gear."
-  />
+  <meta property="og:image" content={new URL("/og.png", page.url.origin).href} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={new URL("/og.png", page.url.origin).href} />
 </svelte:head>
 
 {#if page.url.pathname !== "/"}

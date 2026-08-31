@@ -6,6 +6,12 @@
 
 <svelte:head>
   <title>gear — reptop</title>
+  <meta name="description" content="The hardware and tools Raed Kabir uses daily." />
+  <meta property="og:title" content="gear — reptop" />
+  <meta
+    property="og:description"
+    content="The hardware and tools Raed Kabir uses daily."
+  />
 </svelte:head>
 
 <main>

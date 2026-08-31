@@ -5,15 +5,16 @@ export const prerender = true;
 export const GET: RequestHandler = async ({ url }) => {
   const origin = url.origin;
 
-  const projectModules = import.meta.glob('$lib/projects/*.md', { eager: true });
-  const postModules = import.meta.glob('$lib/posts/*.md', { eager: true });
+  const projectModules = import.meta.glob<{ metadata?: Record<string, unknown> }>('$lib/projects/*.md', { eager: true });
+  const postModules = import.meta.glob<{ metadata?: Record<string, unknown> }>('$lib/posts/*.md', { eager: true });
 
-  const projectSlugs = Object.keys(projectModules).map(
-    (path) => path.split('/').pop()?.replace('.md', '') ?? ''
-  );
-  const postSlugs = Object.keys(postModules).map(
-    (path) => path.split('/').pop()?.replace('.md', '') ?? ''
-  );
+  const publishedSlugs = (modules: typeof projectModules) =>
+    Object.entries(modules)
+      .filter(([, mod]) => mod.metadata?.draft !== true)
+      .map(([path]) => path.split('/').pop()?.replace('.md', '') ?? '');
+
+  const projectSlugs = publishedSlugs(projectModules);
+  const postSlugs = publishedSlugs(postModules);
 
   const staticRoutes = ['/', '/about', '/projects', '/blog', '/gear', '/contact', '/now'];
 

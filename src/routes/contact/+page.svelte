@@ -8,14 +8,16 @@
   let emailCopied = $state(false);
   let discordCopied = $state(false);
 
-  const handleSubmit = async (data) => {
-    data.preventDefault();
-    if (isSubmitting) return;
+  const handleSubmit = async (event: SubmitEvent) => {
+    event.preventDefault();
+
+    if (isSubmitting)
+      return;
 
     isSubmitting = true;
     status = "submitting...";
 
-    const formData = new FormData(data.currentTarget);
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
     const object = Object.fromEntries(formData);
     object.access_key = "a9167a8b-9460-479d-b544-bfc63ff2cf11";
 
@@ -29,11 +31,13 @@
     });
 
     const result = await response.json();
-    if (result.success) {
+
+    if (result.success)
       submitted = true;
-    } else {
-      status = "something went wrong :(";
-    }
+
+    else
+      status = "something went wrong (ruh roh!)";
+
     isSubmitting = false;
   };
 
@@ -52,6 +56,9 @@
 
 <svelte:head>
   <title>contact — reptop</title>
+  <meta name="description" content="How to reach Raed Kabir." />
+  <meta property="og:title" content="contact — reptop" />
+  <meta property="og:description" content="How to reach Raed Kabir." />
 </svelte:head>
 
 <main>

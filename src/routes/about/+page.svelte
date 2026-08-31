@@ -1,11 +1,20 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import TerminalAnimation from "$lib/components/animation";
-  export let data;
+  let { data } = $props();
 </script>
 
 <svelte:head>
   <title>about — reptop</title>
+  <meta
+    name="description"
+    content="About Raed Kabir — platform engineer fellow at HILOS working on GPU scheduling and optimization for ML workloads."
+  />
+  <meta property="og:title" content="about — reptop" />
+  <meta
+    property="og:description"
+    content="About Raed Kabir — platform engineer fellow at HILOS working on GPU scheduling and optimization for ML workloads."
+  />
 </svelte:head>
 
 <main>
@@ -13,12 +22,13 @@
 
   <div class="content" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
     <p class="lead">
-      My name is Raed Kabir. I'm a student at Oregon State University where I
-      study computer science & math with a focus in AI. When online, I go by the
-      handle "reptop." My work history includes conducting linear algebra
-      research, working as a teaching assistant, and tutoring kids in
-      programming. I am currently focusing on machine learning projects related
-      to deep learning, computer vision, and natural language processing.
+      My name is Raed Kabir. I graduated from Oregon State University where I
+      studied computer science & math with a focus in AI. When online, I go by the
+      handle "reptop." Currently, I'm a platform engineer fellow at a startup called
+      <a href="https://hilos.studio" target="_blank" rel="noreferrer">HILOS</a>, where I
+      work on GPU scheduling and optimization for machine learning workloads. On the
+      side, I build machine learning projects related to deep learning, computer
+      vision, and natural language processing.
     </p>
 
     <h2>links</h2>

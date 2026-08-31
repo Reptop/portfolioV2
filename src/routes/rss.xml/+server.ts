@@ -17,6 +17,7 @@ export const GET: RequestHandler = async ({ url }) => {
   const modules = import.meta.glob<{ metadata?: Record<string, unknown> }>('$lib/posts/*.md', { eager: true });
 
   const posts = Object.entries(modules)
+    .filter(([, mod]) => mod.metadata?.draft !== true)
     .map(([path, mod]) => {
       const slug = path.split('/').pop()?.replace('.md', '') ?? '';
       const meta = (mod.metadata ?? {}) as Record<string, unknown>;

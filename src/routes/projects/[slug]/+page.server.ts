@@ -17,6 +17,8 @@ export const load: PageServerLoad = async ({ params }) => {
     throw error(404, 'Project not found');
 
   const metadata = (match.metadata ?? {}) as Record<string, unknown>;
+  if (metadata.draft === true) throw error(404, 'Project not found');
+
   const date = (metadata.date as string) ?? null;
   const formattedDate = date ? dateFormatter.format(new Date(date)) : null;
 
@@ -36,6 +38,7 @@ export const load: PageServerLoad = async ({ params }) => {
   if (metadata.video) info.push({ label: 'Video', value: metadata.video as string });
 
   const allProjects = Object.entries(modules)
+    .filter(([, mod]) => mod.metadata?.draft !== true)
     .map(([p, mod]) => ({
       slug: p.split('/').pop()?.replace('.md', '') ?? '',
       title: (mod.metadata?.title as string) ?? null,

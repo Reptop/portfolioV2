@@ -132,7 +132,12 @@ const config = {
   ],
 
   kit: {
-    adapter: adapter()
+    adapter: adapter(),
+    prerender: {
+      // Origin baked into prerendered routes (sitemap.xml, rss.xml);
+      // without it they emit http://sveltekit-prerender URLs
+      origin: 'https://www.reptop.dev'
+    }
   },
 
 };

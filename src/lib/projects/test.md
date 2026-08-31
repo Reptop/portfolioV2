@@ -1,4 +1,5 @@
 ---
+draft: true
 title: "Test project (wow)"
 date: "2022-02-24"
 tags: ["Svelte", "mdsvex"]

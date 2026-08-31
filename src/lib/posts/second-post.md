@@ -1,4 +1,5 @@
 ---
+draft: true
 title: "My second blog post (wow) (wow)"
 subtitle: "Another cool subtitle"
 date: "2026-02-24"

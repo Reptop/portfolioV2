@@ -14,7 +14,7 @@
   <h1 in:TerminalAnimation={{ duration: 270 }}>now</h1>
 
   <p class="meta" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
-    Last updated May 2026 ·
+    Last updated August 2026 ·
     <a
       href="https://nownownow.com/about"
       target="_blank"
@@ -29,7 +29,10 @@
     <section class="block">
       <h2>working on</h2>
       <ul>
-        <li>finishing up my linear algebra research project</li>
+        <li>
+          GPU scheduling and optimization for ML workloads as a platform
+          engineer fellow at HILOS
+        </li>
         <li>building out ML projects focused on computer vision</li>
         <li>this portfolio</li>
       </ul>
@@ -55,9 +58,10 @@
     <section class="block">
       <h2>otherwise</h2>
       <ul>
-        <li>TAing and tutoring at OSU</li>
+        <li>bouldering</li>
+        <li>watching anime with friends</li>
         <li>running Bedrock Linux on my daily driver</li>
-        <li>collecting Chiikawa plushies</li>
+        <li>studying smash bros</li>
       </ul>
     </section>
   </div>

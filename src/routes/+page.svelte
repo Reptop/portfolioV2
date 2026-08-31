@@ -14,6 +14,15 @@
 
 <svelte:head>
   <title>reptop</title>
+  <meta
+    name="description"
+    content="Raed Kabir — platform engineer. Machine learning, math, and programming."
+  />
+  <meta property="og:title" content="reptop" />
+  <meta
+    property="og:description"
+    content="Raed Kabir — platform engineer. Machine learning, math, and programming."
+  />
 </svelte:head>
 
 <main>

@@ -30,6 +30,7 @@ export const load: PageServerLoad = async ({ params }) => {
   if (!match || !rawMatch) throw error(404, 'Post not found');
 
   const metadata = (match.metadata ?? {}) as Record<string, unknown>;
+  if (metadata.draft === true) throw error(404, 'Post not found');
   const raw = String(await rawMatch());
   const readMins = estimateReadingMinutes(raw);
   const tags = Array.isArray(metadata.tags) ? (metadata.tags as string[]) : [];

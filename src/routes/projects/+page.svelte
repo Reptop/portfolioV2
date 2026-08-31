@@ -12,6 +12,15 @@
 
 <svelte:head>
   <title>projects — reptop</title>
+  <meta
+    name="description"
+    content="Projects by Raed Kabir — machine learning, computer vision, and software."
+  />
+  <meta property="og:title" content="projects — reptop" />
+  <meta
+    property="og:description"
+    content="Projects by Raed Kabir — machine learning, computer vision, and software."
+  />
 </svelte:head>
 
 <main>
