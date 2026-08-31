@@ -3,8 +3,13 @@
   import Scene from "./Scene.svelte";
   import BackgroundImage from "$lib/assets/bg.png";
   import { fade } from "svelte/transition";
+  import { browser } from "$app/environment";
 
   let modelLoaded = $state(false);
+
+  // Cap pixel ratio: full retina resolution isn't visible on a soft
+  // background model, but costs 2-4x the fill rate
+  const dpr = browser ? Math.min(1.5, window.devicePixelRatio) : 1;
 </script>
 
 <svelte:head>
@@ -14,7 +19,7 @@
 <main>
   <div class="bg" style="background-image: url({BackgroundImage});"></div>
   <div class="wrap">
-    <Canvas>
+    <Canvas {dpr}>
       <Scene onloaded={() => (modelLoaded = true)} />
     </Canvas>
 

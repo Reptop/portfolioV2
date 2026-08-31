@@ -1,7 +1,7 @@
 <script lang="ts">
   import { T, useTask } from "@threlte/core";
-  import { interactivity } from "@threlte/extras";
   import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+  import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
   import { useLoader } from "@threlte/core";
   import { useGltfAnimations } from "@threlte/extras";
   import { base } from "$app/paths";
@@ -9,10 +9,10 @@
 
   let { onloaded }: { onloaded?: () => void } = $props();
 
-  interactivity();
-
-  const url = `${base}/mega_delphox_za/scene.optimized.glb`;
-  const gltf = useLoader(GLTFLoader).load(url);
+  const url = `${base}/mega_delphox_za/scene.slim.glb`;
+  const gltf = useLoader(GLTFLoader, {
+    extend: (loader) => loader.setMeshoptDecoder(MeshoptDecoder),
+  }).load(url);
   const { actions } = useGltfAnimations(gltf);
 
   // Root scene node — set once the model loads
