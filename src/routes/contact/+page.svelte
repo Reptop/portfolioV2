@@ -107,7 +107,7 @@
   <h3>contact form</h3>
   {#if submitted}
     <div class="success">
-      <p class="success-msg">message sent — i'll get back to you soon.</p>
+      <p class="success-msg">message sent! i'll get back to you soon.</p>
       <button
         class="reset-btn"
         onclick={() => {

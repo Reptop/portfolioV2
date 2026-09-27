@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { untrack } from "svelte";
+
   let {
     images,
     startIndex = 0,
@@ -9,9 +11,9 @@
     onclose: () => void;
   } = $props();
 
-  let current = $state(startIndex);
+  // The lightbox is remounted on every open, so only the initial value matters.
+  let current = $state(untrack(() => startIndex));
   let dialogEl: HTMLDialogElement | undefined = $state();
-  let lbEl: HTMLDivElement | undefined = $state();
 
   $effect(() => {
     dialogEl?.showModal();
@@ -42,13 +44,9 @@
     if (e.target === dialogEl) onclose();
   }}
 >
-  <div
-    class="lb"
-    bind:this={lbEl}
-    onclick={(e) => {
-      if (e.target === lbEl) onclose();
-    }}
-  >
+  <!-- .lb ignores pointer events so clicks on the empty area reach the
+       dialog's backdrop handler above; its children re-enable them. -->
+  <div class="lb">
     <img
       src={images[current]}
       alt="Gallery image {current + 1} of {images.length}"
@@ -98,6 +96,11 @@
     width: 100%;
     height: 100%;
     padding: 3rem;
+    pointer-events: none;
+  }
+
+  .lb > * {
+    pointer-events: auto;
   }
 
   img {

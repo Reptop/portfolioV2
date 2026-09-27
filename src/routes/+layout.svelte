@@ -2,13 +2,13 @@
   import favicon from "$lib/assets/favicon.svg";
   import { page } from "$app/state";
   import "../app.css";
-  import { inject } from "@vercel/analytics";
+  import { injectAnalytics } from "@vercel/analytics/sveltekit";
   import CommandPalette from "$lib/components/CommandPalette.svelte";
   import Terminal from "$lib/components/Terminal.svelte";
 
   let { children } = $props();
 
-  inject();
+  injectAnalytics();
 
   let menuOpen = $state(false);
 

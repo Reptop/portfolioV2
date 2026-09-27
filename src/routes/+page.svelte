@@ -1,15 +1,67 @@
 <script lang="ts">
-  import { Canvas } from "@threlte/core";
-  import Scene from "./Scene.svelte";
   import BackgroundImage from "$lib/assets/bg.png";
   import { fade } from "svelte/transition";
   import { browser } from "$app/environment";
 
+  type HeroSceneComponent = typeof import("./HeroScene.svelte").default;
+
+  // The 3D scene (three.js + threlte + the model) is the heaviest thing on
+  // the site, so it is kept out of this route's chunk and only imported
+  // once the page has painted and the browser is idle.
+  let HeroScene: HeroSceneComponent | null = $state(null);
   let modelLoaded = $state(false);
+  let sceneSkipped = $state(false);
 
   // Cap pixel ratio: full retina resolution isn't visible on a soft
   // background model, but costs 2-4x the fill rate
   const dpr = browser ? Math.min(1.5, window.devicePixelRatio) : 1;
+
+  $effect(() => {
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const saveData =
+      (navigator as Navigator & { connection?: { saveData?: boolean } })
+        .connection?.saveData === true;
+
+    if (reducedMotion || saveData) {
+      sceneSkipped = true;
+      return;
+    }
+
+    let cancelled = false;
+    let idleId: number | undefined;
+
+    const load = () => {
+      import("./HeroScene.svelte").then((m) => {
+        if (!cancelled) HeroScene = m.default;
+      });
+    };
+
+    // Safari has no requestIdleCallback
+    const hasIdle = typeof window.requestIdleCallback === "function";
+
+    const whenIdle = () => {
+      idleId = hasIdle
+        ? window.requestIdleCallback(load, { timeout: 2000 })
+        : window.setTimeout(load, 250);
+    };
+
+    if (document.readyState === "complete") {
+      whenIdle();
+    } else {
+      window.addEventListener("load", whenIdle, { once: true });
+    }
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", whenIdle);
+      if (idleId !== undefined) {
+        if (hasIdle) window.cancelIdleCallback(idleId);
+        else clearTimeout(idleId);
+      }
+    };
+  });
 </script>
 
 <svelte:head>
@@ -28,11 +80,15 @@
 <main>
   <div class="bg" style="background-image: url({BackgroundImage});"></div>
   <div class="wrap">
-    <Canvas {dpr}>
-      <Scene onloaded={() => (modelLoaded = true)} />
-    </Canvas>
+    <!-- Reserved 2:1 slot so the scene can mount later without shifting
+         the text below it (CLS). -->
+    <div class="scene">
+      {#if HeroScene}
+        <HeroScene {dpr} onloaded={() => (modelLoaded = true)} />
+      {/if}
+    </div>
 
-    {#if !modelLoaded}
+    {#if !modelLoaded && !sceneSkipped}
       <div class="model-loading" out:fade={{ duration: 400 }}>
         <span>loading model<span class="dots">...</span></span>
       </div>
@@ -88,6 +144,12 @@
     width: min(48rem, 100%);
     border-radius: 18px;
     overflow: hidden;
+  }
+
+  .scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 1;
   }
 
   .model-loading {

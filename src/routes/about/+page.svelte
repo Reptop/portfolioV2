@@ -25,7 +25,7 @@
       My name is Raed Kabir. I graduated from Oregon State University where I
       studied computer science & math with a focus in AI. When online, I go by the
       handle "reptop." Currently, I'm a platform engineer fellow at a startup called
-      <a href="https://hilos.studio" target="_blank" rel="noreferrer">HILOS</a>, where I
+      <a href="https://hilos.studio" class="inline" target="_blank" rel="noreferrer">HILOS</a>, where I
       work on GPU scheduling and optimization for machine learning workloads. On the
       side, I build machine learning projects related to deep learning, computer
       vision, and natural language processing.
@@ -205,9 +205,22 @@
     max-width: 72ch;
   }
 
-  a {
+  /* Beats the global `.content a` underline in app.css regardless of
+     stylesheet order (reload vs client-side nav loaded them differently). */
+  .content a {
     color: var(--txt);
     text-decoration: none;
+  }
+
+  /* Inline prose links: always underlined, brighter on hover */
+  .content a.inline {
+    text-decoration: underline var(--txt-3) 2px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .content a.inline:hover {
+    text-decoration-color: var(--txt);
   }
 
   .lead {
@@ -401,7 +414,7 @@
     flex-wrap: wrap;
   }
 
-  .repo-link {
+  .content .repo-link {
     font-size: 0.95rem;
     color: var(--txt-2);
     text-decoration: underline;
