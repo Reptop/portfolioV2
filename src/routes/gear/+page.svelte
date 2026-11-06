@@ -20,7 +20,7 @@
   </h1>
 
   <p class="sub" in:TerminalAnimation={{ delay: 70, duration: 220 }}>
-    Tech I depend on for my livelihood characterized as Chiikawa characters.
+    Tech I depend on for my livelihood characterized as Chiikawa characters. I used these characters as placeholders initially but I like them :)
   </p>
 
   <section
