@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
+  import Icon from "$lib/components/Icon.svelte";
   import TerminalAnimation from "$lib/components/animation";
 
   let status = $state("submit ->");
@@ -66,7 +66,7 @@
   <p>If you want to talk to me.</p>
 
   <div class="info" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
-    <span class="icn"><Icon icon="simple-icons:gmail" /></span>
+    <span class="icn"><Icon name="gmail" /></span>
 
     email <span class="sub">-></span>
 
@@ -76,15 +76,15 @@
 
     <button class="copy-btn" onclick={copyEmail} aria-label="Copy email">
       {#if emailCopied}
-        <span class="icn"><Icon icon="mdi:check" /></span>
+        <span class="icn"><Icon name="check" /></span>
       {:else}
-        <span class="icn"><Icon icon="mdi:content-copy" /></span>
+        <span class="icn"><Icon name="copy" /></span>
       {/if}
     </button>
   </div>
 
   <div class="info" in:TerminalAnimation={{ delay: 120, duration: 280 }}>
-    <span class="icn"><Icon icon="simple-icons:discord" /></span>
+    <span class="icn"><Icon name="discord" /></span>
     discord <span class="sub">-></span>
 
     <a href="https://discord.com/users/315889354394566656" class="external"
@@ -97,9 +97,9 @@
       aria-label="Copy Discord username"
     >
       {#if discordCopied}
-        <span class="icn"><Icon icon="mdi:check" /></span>
+        <span class="icn"><Icon name="check" /></span>
       {:else}
-        <span class="icn"><Icon icon="mdi:content-copy" /></span>
+        <span class="icn"><Icon name="copy" /></span>
       {/if}
     </button>
   </div>

@@ -27,11 +27,13 @@ src/
 │   │   └── copyCode.ts      # copy-to-clipboard action for code blocks
 │   ├── assets/
 │   │   ├── bg.png
+│   │   ├── favicon.png      # rasterised from favicon.svg (the SVG is ~380 KB)
 │   │   ├── favicon.svg
 │   │   └── mega_delphox_za/ # 3D model (GLTF + textures)
 │   ├── components/
 │   │   ├── animation.ts     # animation utilities
 │   │   ├── CommandPalette.svelte
+│   │   ├── Icon.svelte      # inline SVG icons (no runtime icon fetch)
 │   │   ├── Lightbox.svelte
 │   │   └── Terminal.svelte
 │   ├── gear/                # gear page markdown entries
@@ -40,15 +42,15 @@ src/
 │   ├── palette-data.ts      # command palette entries
 │   └── profile.ts           # shared profile data
 └── routes/
-    ├── +layout.svelte       # site-wide layout
+    ├── +layout.svelte       # site-wide layout + spatial page transitions
     ├── +page.svelte         # home page (3D scene)
     ├── Scene.svelte         # Three.js / Threlte scene
     ├── about/
-    ├── blog/[slug]/
+    ├── blog/[slug]/         # +page.server.ts (metadata) + +page.ts (SSR'd markdown body)
     ├── contact/
     ├── gear/
     ├── now/
-    ├── projects/[slug]/
+    ├── projects/[slug]/     # same split as blog/[slug]
     ├── rss.xml/
     └── sitemap.xml/
 

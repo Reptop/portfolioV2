@@ -1,14 +1,10 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import type { Component } from "svelte";
   import { copyCode } from "$lib/actions/copyCode";
 
   let { data }: { data: PageData } = $props();
 
-  const postModules = import.meta.glob("$lib/posts/*.md");
-  const postPromise = $derived(
-    postModules[`/src/lib/posts/${data.slug}.md`]() as Promise<{ default: Component }>
-  );
+  const Post = $derived(data.content);
 </script>
 
 <svelte:head>
@@ -63,12 +59,7 @@
   {/if}
 
   <section class="prose" use:copyCode>
-    {#await postPromise then post}
-      {@const Post = post.default}
-      <Post />
-    {:catch err}
-      <p>Unable to render this post: {err.message}</p>
-    {/await}
+    <Post />
   </section>
 </article>
 

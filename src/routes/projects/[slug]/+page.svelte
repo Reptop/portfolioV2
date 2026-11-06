@@ -1,15 +1,11 @@
 <script lang="ts">
   import type { PageData } from './$types';
-  import type { Component } from "svelte";
   import { copyCode } from "$lib/actions/copyCode";
   import Lightbox from "$lib/components/Lightbox.svelte";
 
   let { data }: { data: PageData } = $props();
 
-  const projectModules = import.meta.glob("$lib/projects/*.md");
-  const projectPromise = $derived(
-    projectModules[`/src/lib/projects/${data.slug}.md`]() as Promise<{ default: Component }>
-  );
+  const Project = $derived(data.content);
 
   const lightboxImages = $derived([
     ...(data.cover ? [data.cover] : []),
@@ -130,10 +126,7 @@
   {/if}
 
   <article class="content" use:copyCode>
-    {#await projectPromise then project}
-      {@const Project = project.default}
-      <Project />
-    {/await}
+    <Project />
   </article>
 
   <nav class="pagination">

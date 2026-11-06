@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
+  import Icon from "$lib/components/Icon.svelte";
   import TerminalAnimation from "$lib/components/animation";
   let { data } = $props();
 </script>
@@ -40,7 +40,7 @@
         target="_blank"
         rel="noreferrer"
       >
-        <span class="icn"><Icon icon="simple-icons:github" /></span>
+        <span class="icn"><Icon name="github" /></span>
         <span class="text">github</span>
         <span class="arrow">/&gt;</span>
       </a>
@@ -51,7 +51,7 @@
         target="_blank"
         rel="noreferrer"
       >
-        <span class="icn"><Icon icon="simple-icons:twitter" /></span>
+        <span class="icn"><Icon name="twitter" /></span>
         <span class="text">twitter</span>
         <span class="arrow">/&gt;</span>
       </a>
@@ -62,7 +62,7 @@
         target="_blank"
         rel="noreferrer"
       >
-        <span class="icn"><Icon icon="simple-icons:discord" /></span>
+        <span class="icn"><Icon name="discord" /></span>
         <span class="text">discord</span>
         <span class="arrow">/&gt;</span>
       </a>
@@ -73,7 +73,7 @@
         target="_blank"
         rel="noreferrer"
       >
-        <span class="icn"><Icon icon="simple-icons:linkedin" /></span>
+        <span class="icn"><Icon name="linkedin" /></span>
         <span class="text">linkedin</span>
         <span class="arrow">/&gt;</span>
       </a>

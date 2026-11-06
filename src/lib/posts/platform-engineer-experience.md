@@ -2,7 +2,7 @@
 title: "My experience so far as a platform engineer"
 subtitle: "New role, hard problems, and insanely smart people"
 date: "2026-08-31"
-cover: "/projects/shisa_dance.gif"
+cover: "/projects/shisa_dance.mp4"
 tags: ["career", "platform engineering"]
 ---
 
